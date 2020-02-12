@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './CommentForm.scss';
+import user from '../../assets/Images/Mohan-muruge.jpg';
 
 class CommentForm extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render(){
         return (
         <article className="article">
@@ -13,7 +10,7 @@ class CommentForm extends Component {
             <div className="article__main comment-section">
                 <form action="" className="form">
                     <div className="form__left">
-                        <div className="form__picture"></div>
+                        <img className="form__picture" alt="Mohan looking left" src={user}></img>
                     </div>
                     <div className="form__right form__section">
                         <div className="form__field">
@@ -30,8 +27,8 @@ class CommentForm extends Component {
                     </div> 
                 </form>
             </div>
-       </article>
-    );
+        </article>
+        );
     }
 }
 

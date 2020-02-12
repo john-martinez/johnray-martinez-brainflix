@@ -3,9 +3,6 @@ import NextVideo from '../NextVideo/NextVideo';
 import gallery from '../../assets/Imports/Images';
 
 class NextVideoList extends Component {
-    constructor(props){
-        super(props);
-    }
     render(){
         return (
             <section className="next-video-list">

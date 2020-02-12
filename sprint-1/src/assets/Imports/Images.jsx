@@ -1,4 +1,3 @@
-import logo from '../Images/Mohan-muruge.jpg';
 import thumbnail1 from '../Images/video-list-0.jpg';
 import thumbnail2 from '../Images/video-list-1.jpg';
 import thumbnail3 from '../Images/video-list-2.jpg';
@@ -10,7 +9,6 @@ import thumbnail8 from '../Images/video-list-7.jpg';
 import thumbnail9 from '../Images/video-list-8.jpg';
 
 const images = {
-    logo: {link: logo, alt: "Mohan Muruge facing left"},
     images: [
         {
             link: thumbnail1, 

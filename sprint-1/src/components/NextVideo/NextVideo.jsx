@@ -5,7 +5,7 @@ function NextVideo(props){
     return(
         <div className="next-video">
             <div className="next-video__left">
-                <img class="next-video__image" src={props.image.link} alt={props.image.alt} />
+                <img className="next-video__image" src={props.image.link} alt={props.image.alt} />
             </div>
             <div className="next-video__right">
                 <strong>{props.image.title}</strong>    

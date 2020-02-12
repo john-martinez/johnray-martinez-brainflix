@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Nav from '../Nav/Nav';
 import './Header.scss';
 
-class Header extends Component {
-  constructor(props){
-    super(props)
-  }
-  render() {
+function Header () {
     return (
-        <header className="header">
-          <Nav />
-        </header>
+      <header className="header">
+        <Nav />
+      </header>
     );
-  }
 }
 
 export default Header;

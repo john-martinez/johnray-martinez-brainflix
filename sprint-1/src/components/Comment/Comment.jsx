@@ -18,7 +18,7 @@ function Comment(props) {
         if (res >= 1){
           for(let i = 0; i < time.length; i++){
             // this block triggers if timestamp is more than or equal to 4 weeks
-            if (i == time.length-1){ 
+            if (i === time.length-1){ 
               // convert year to months (1year = 12 months) and add the rest of the months to the result
               // add toConvert month and rightNow month to their respective results
     
@@ -27,7 +27,7 @@ function Comment(props) {
               // subtract the results and you will get the results in months format
               res = rightNowMonths - toConvertMonths; 
               if (res >= 12) return `${Math.floor(res/12)} yr${(Math.floor(res/12)>=2)?'s':''} ago`;
-              else return `${res} mon${res!= 1?'s':''} ago`;
+              else return `${res} mon${res!== 1?'s':''} ago`;
             }
             else  {
               // cycle through the time array and divide res by time[i].divider
