@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Header from '../Header/Header';
-import CommentForm from '../CommentForm/CommentForm';
-import CommentList from '../CommentList/CommentList';
-
+import CommentSection from '../CommentSection/CommentSection';
 
 class App extends Component {
   constructor(props){
@@ -12,11 +10,10 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <main>
         <Header />
-        <CommentForm />
-        <CommentList />
-      </>
+        <CommentSection />
+      </main>
     );
   }
 }

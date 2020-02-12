@@ -40,27 +40,21 @@ function Comment(props) {
       } 
 
     return (
-        <article className="article"> 
-            <div className="article__main comment-section">
-                <div className="comments-container">
-                    <div className="comment"> 
-                        <div className="comment__left"> 
-                            <div className="comment__image"> </div>
-                        </div>
-                        <div className="comment__right"> 
-                            <div className="comment__header">
-                                <span className="comment__author"> {props.comment.name} </span>
-                                <span className="comment__time-stamp"> {dynamicTimeStamp(props.comment.timestamp)} </span>
-                                <div className="comment__blurb"> 
-                                    <p> {props.comment.comment} </p>
-                                </div>
-                            </div>
-                        </div>
+        <div className="comment"> 
+            <div className="comment__left"> 
+                <div className="comment__image"> </div>
+            </div>
+            <div className="comment__right"> 
+                <div className="comment__header">
+                    <span className="comment__author"> {props.comment.name} </span>
+                    <span className="comment__time-stamp"> {dynamicTimeStamp(props.comment.timestamp)} </span>
+                    <div className="comment__blurb"> 
+                        <p> {props.comment.comment} </p>
                     </div>
                 </div>
             </div>
-        </article>
-    );
-}
+        </div>
+        );
+    }
 
 export default Comment;

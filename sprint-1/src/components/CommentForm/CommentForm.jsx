@@ -9,7 +9,7 @@ class CommentForm extends Component {
     render(){
         return (
         <article className="article">
-            <h2 className="article__header">Join the conversation</h2>
+            <h2 className="article__header">{this.props.commentsLength} Comments</h2>
             <div className="article__main comment-section">
                 <form action="" className="form">
                     <div className="form__left">
