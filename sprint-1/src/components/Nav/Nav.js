@@ -11,7 +11,7 @@ class Nav extends Component {
             <img className="nav__logo" src={logo} alt="brainflix logo"></img> 
             <div className="nav__search-container"> 
               <input className="nav__search" type="text" name="search" placeholder="Search" />
-              <img src={search} className="nav__search-icon"></img>
+              <img src={search} className="nav__search-icon" alt="magnifying glass"></img>
             </div>
             <div className="nav__actions">
                 <button className="nav__button"> + UPLOAD </button>
