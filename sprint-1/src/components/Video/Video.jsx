@@ -2,27 +2,30 @@ import React from 'react';
 import views from '../../assets/Icons/SVG/Icon-views.svg';
 import likes from '../../assets/Icons/SVG/Icon-likes.svg';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
-import link from '../../assets/Video/BrainStation Sample Video.mp4';
 
 
-function Video(){
+function Video(props){
+    let year = new Date(props.mainVideo.timestamp).getFullYear();
+    let month = new Date(props.mainVideo.timestamp).getMonth();    
+    let day = new Date(props.mainVideo.timestamp).getDate();
+    console.log(props.mainVideo);
     return (
         <section className="video">
-            <VideoPlayer link={link} />
-            <h2 className="video__title">BMX Rampage: 2018 Highlights</h2>
-            <span><strong>By Red Cow</strong></span>
-            <span>12/18/2018</span>
+            <VideoPlayer video={props.mainVideo} />
+            <h2 className="video__title">{props.mainVideo.title}</h2>
+            <span><strong>{props.mainVideo.channel}</strong></span>
+            <span>{`${month}/${day}/${year}`}</span>
             <div className="video__stats">
                 <span className="video__views">
                     <img src={views} alt="views icon"/>
-                    1,001,023
+                    {props.mainVideo.views}
                 </span>
                 <span className="video__likes">
-                    <img src={likes} alt="views icon"/>
-                    110,985
+                    <img src={likes} alt="likes icon"/>
+                    {props.mainVideo.likes}
                 </span>
             </div>
-            <p className="video__description">On a gusty day in Southern Utah, a group of 25 daring mountain bikers blew the doors off what is possible on two wheels, unleashing some of the biggest moments the sport has ever seen. While mother nature only allowed for one full run before the conditions made it impossible to ride, that was all that was needed for event veteran Kyle Strait, who won the event for the second time -- eight years after his first Red Cow Rampage title
+            <p className="video__description"> {props.mainVideo.description}
             </p>
         </section>
     );

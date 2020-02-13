@@ -4,7 +4,7 @@ import './VideoPlayer.scss';
 function VideoPlayer(props){
     return(
         <div className="video-player">
-            <video className="video-player__video" controls src={props.link}></video>
+            <video className="video-player__video" poster={props.video.image} ></video>
         </div>
     );
 }
