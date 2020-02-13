@@ -7,9 +7,9 @@ class NextVideoList extends Component {
         return (
             <section className="next-video-list">
                 <h4>NEXT VIDEO</h4>
-                {this.props.videos
+                {videos
                 .filter(item=>item.id !== this.props.mainVideoId)
-                .map(item=><NextVideo image={item} key={this.props.videos.id} /> )}
+                .map(item=><NextVideo image={item} key={videos.id} /> )}
             </section>    
         );
     }

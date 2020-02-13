@@ -8,7 +8,6 @@ function Video(props){
     let year = new Date(props.mainVideo.timestamp).getFullYear();
     let month = new Date(props.mainVideo.timestamp).getMonth();    
     let day = new Date(props.mainVideo.timestamp).getDate();
-    console.log(props.mainVideo);
     return (
         <section className="video">
             <VideoPlayer video={props.mainVideo} />

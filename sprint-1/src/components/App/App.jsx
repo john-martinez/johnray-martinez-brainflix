@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
-import Video from '../Video/Video';
-import CommentSection from '../CommentSection/CommentSection';
 import NextVideoList from '../NextVideoList/NextVideoList';
-import videoData from '../../assets/Imports/videos';
-import videos from '../../assets/Imports/sideVideo';
+import MainVideo from '../MainVideo/MainVideo';
 import './App.scss';
+import mainVideo from '../../assets/Imports/videos';
 
-function App() {
-  return (
-    <main>
-      <Header />
-      <Video mainVideo={videoData} />
-      <CommentSection comments={videoData.comments}/>
-      <NextVideoList videos={videos} mainVideoId={videoData.id}/>
-    </main>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {mainVideoId: mainVideo.id}
+  }
+
+  render() {
+    return (
+      <main>
+        <Header />
+        <MainVideo  />
+        <NextVideoList mainVideoId={this.state.mainVideoId}/>
+      </main>
+    );
+  }
 }
 
 export default App;
