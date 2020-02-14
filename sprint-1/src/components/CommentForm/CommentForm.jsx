@@ -17,7 +17,7 @@ class CommentForm extends Component {
                         <textarea name="comment" id="comment" className="comment-form__input text-area" placeholder="Add a new comment"></textarea>
                     </div>
                     <div className="comment-form__field">
-                        <button id="submit-btn" className=" btn">COMMENT</button>
+                        <button className="comment-form__button">COMMENT</button>
                     </div>
                 </div> 
             </form>
