@@ -13,20 +13,20 @@ function Video(props){
     return (
         <section className="video">
             <VideoPlayer video={props.mainVideo} />
-            <div class="video__details">
+            <div className="video__details">
                 <h2 className="video__title">{props.mainVideo.title}</h2>
-                <div class="video__details--flex">
+                <div className="video__details--flex">
                     <p className="video__channel"><strong>{props.mainVideo.channel}</strong></p>
                     <span className="video__timestamp">{`${month}/${day}/${year}`}</span>
                 </div>  
                 <div className="video__stats-container">
                     <span className="video__stats">
                         <img className="video__stat-icon" src={views} alt="views icon"/>
-                        <span class="video__stat-value"> {props.mainVideo.views} </span>
+                        <span className="video__stat-value"> {props.mainVideo.views} </span>
                     </span>
                     <span className="video__stats">
                         <img className="video__stat-icon" src={likes} alt="likes icon"/>
-                        <span class="video__stat-value"> {props.mainVideo.likes} </span>
+                        <span className="video__stat-value"> {props.mainVideo.likes} </span>
                     </span>
                 </div>
                 <hr />

@@ -4,7 +4,7 @@ import Comment from '../Comment/Comment';
 function CommentList(props) {
     return(
         <article className="comment-list"> 
-            { props.comments.map((item,i)=> <Comment comment={item} key={i} />) }
+            { props.comments.map((item)=> <Comment comment={item} key={item.id} />) }
         </article>
     );
 }
