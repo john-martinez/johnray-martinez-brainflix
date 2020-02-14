@@ -20,7 +20,7 @@ function VideoPlayer(props){
         <div className="video-player">
           <video className="video-player__video" poster={props.video.image} ></video>
             <div className="video-player__controls">
-                <img alt="play button" onClick={changeIcon} src={play} className="vimgdeo-player__play-button" /> 
+                <img alt="play button" onClick={changeIcon} src={play} className="video-player__play-button" /> 
                 <div className="video-player__scrubber-bar"> 
                     <hr className="video-player__scrubber-line"/>
                 </div>

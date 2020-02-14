@@ -1,11 +1,32 @@
+@import '../../assets/Partials/mixins';
+
 .nav {
     width: inherit;
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding: 10px 5% 10px 5%;
 
-    &__search { padding: 15px; width: 100%; padding-left: 50px }
-    &__search-container { position: relative }
+    &__left { display: flex; justify-content: center}
+    &__right { 
+        display: flex;
+        flex-direction: column;
+
+        > * { margin-bottom: 10px}
+    }
+    &__search { 
+        padding: 15px; 
+        height: 100%;
+        width: 100%; 
+        padding-left: 50px;
+        border-radius: 5px;
+        border: none;
+        border: 1px solid lightgray;
+    }
+
+    &__search-container { 
+        position: relative;
+        flex-grow: 1;  
+    }
     &__search-icon { 
         position: absolute; 
         top: 50%; 
@@ -19,7 +40,8 @@
     }
     &__button { 
         width: 80%; 
-        padding: 15px 0; 
+        min-width: 143px;
+        padding: 10px 0; 
         flex-grow: 1;
         margin-right: 5px;
         background-color: #0095FF;
@@ -37,4 +59,22 @@
         margin-left: 5px;
     }    
     > * { margin: 5px 0 }
+
+    @include tablet {
+        padding: 10px 2%;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__right{ 
+            flex-direction: row;
+            flex-basis: 80%;
+            justify-content: flex-end;
+            > * { margin-bottom: 0 }
+        }
+        &__button { padding: 15px 30px }
+        &__search-container { 
+            margin: 0 20px;
+            max-width: 250px; 
+         }
+    }
 }
