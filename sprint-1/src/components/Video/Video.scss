@@ -1,0 +1,19 @@
+.video {
+    &__details { 
+        padding: 5%;
+
+        &--flex { 
+            display: flex; 
+            align-items: baseline;
+        }
+    }
+    &__timestamp { margin-left: 10px }
+    &__title { font-family: "AvenirHeavy" }
+    &__stats { padding-right: 30px }
+    &__stats-container {
+        display: flex; 
+        height: 30px;
+    }
+    &__stat-value { margin-left: 7px }
+    &__stat-icon { transform: translateY(2px);}
+}

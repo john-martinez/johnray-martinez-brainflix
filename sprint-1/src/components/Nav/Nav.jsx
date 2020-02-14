@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../../assets/Logo/Logo-brainflix.svg';
 import user from '../../assets/Images/Mohan-muruge.jpg';
 import search from '../../assets/Icons/SVG/Icon-search.svg';
+import upload from '../../assets/Icons/SVG/Icon-upload.svg';
 import './Nav.scss';
 
 class Nav extends Component {
@@ -14,7 +15,7 @@ class Nav extends Component {
               <img src={search} className="nav__search-icon" alt="magnifying glass"></img>
             </div>
             <div className="nav__actions">
-                <button className="nav__button"> <i src="search"></i> UPLOAD </button>
+                <button className="nav__button"> <img src={upload} /> UPLOAD </button>
                 <img src={user} className="nav__user" alt="Mohan Murugi side view"></img>
             </div>
         </nav>

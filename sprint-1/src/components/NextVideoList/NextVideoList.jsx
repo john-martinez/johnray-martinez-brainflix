@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NextVideo from '../NextVideo/NextVideo';
 import videos from '../../assets/Imports/sideVideo';
+import './NextVideoList.scss';
 
 class NextVideoList extends Component {
     render(){

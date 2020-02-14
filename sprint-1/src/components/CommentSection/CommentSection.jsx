@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CommentForm from '../CommentForm/CommentForm';
 import CommentList from '../CommentList/CommentList';
+import './CommentSection.scss';
 
 
 class CommentSection extends Component {

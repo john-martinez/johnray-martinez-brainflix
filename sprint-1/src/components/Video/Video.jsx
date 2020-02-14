@@ -1,7 +1,9 @@
 import React from 'react';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import views from '../../assets/Icons/SVG/Icon-views.svg';
 import likes from '../../assets/Icons/SVG/Icon-likes.svg';
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
+import './Video.scss';
+
 
 
 function Video(props){
@@ -11,21 +13,25 @@ function Video(props){
     return (
         <section className="video">
             <VideoPlayer video={props.mainVideo} />
-            <h2 className="video__title">{props.mainVideo.title}</h2>
-            <span><strong>{props.mainVideo.channel}</strong></span>
-            <span>{`${month}/${day}/${year}`}</span>
-            <div className="video__stats">
-                <span className="video__views">
-                    <img src={views} alt="views icon"/>
-                    {props.mainVideo.views}
-                </span>
-                <span className="video__likes">
-                    <img src={likes} alt="likes icon"/>
-                    {props.mainVideo.likes}
-                </span>
+            <div class="video__details">
+                <h2 className="video__title">{props.mainVideo.title}</h2>
+                <div class="video__details--flex">
+                    <p className="video__channel"><strong>{props.mainVideo.channel}</strong></p>
+                    <span className="video__timestamp">{`${month}/${day}/${year}`}</span>
+                </div>  
+                <div className="video__stats-container">
+                    <span className="video__stats">
+                        <img className="video__stat-icon" src={views} alt="views icon"/>
+                        <span class="video__stat-value"> {props.mainVideo.views} </span>
+                    </span>
+                    <span className="video__stats">
+                        <img className="video__stat-icon" src={likes} alt="likes icon"/>
+                        <span class="video__stat-value"> {props.mainVideo.likes} </span>
+                    </span>
+                </div>
+                <hr />
+                <p className="video__description"> {props.mainVideo.description} </p>
             </div>
-            <p className="video__description"> {props.mainVideo.description}
-            </p>
         </section>
     );
 }

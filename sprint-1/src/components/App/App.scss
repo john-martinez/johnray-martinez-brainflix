@@ -1,8 +1,12 @@
+@import '../../assets/Partials/fonts';
+@import '../../assets/Partials/variables';
+
 * {
     box-sizing: border-box;
+    font-family: $primary-font;
 }
 
-html {
+body {
     margin: 0;
     padding: 0;
 }
