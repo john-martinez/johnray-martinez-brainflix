@@ -1,4 +1,5 @@
 @import '../../assets/Partials/variables';
+@import '../../assets/Partials/mixins';
 
 .comment-form {
     display: flex;
@@ -40,11 +41,17 @@
     &__field {
         padding-left: 10px;
         width: 100%;
+
+        &--flex {
+            @extend .comment-form__field;
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     &__input {
         width: 100%;
-        height: 150px;
+        height: 100%;
         padding: 15px;
         font-size: 1.1rem;
         resize: none;
@@ -58,5 +65,18 @@
             outline: none;
         }
     }
-    // @include tablet { &__field:last-of-type { text-align: right } }
+    @include tablet {
+        &__field { 
+            flex-direction: row;
+
+            &--flex { height: 50px }
+        }
+        &__picture { margin-top: 24px; height: 50px; width: 50px }
+        &__input { 
+            word-wrap: normal;
+            overflow-y: hidden;
+        }
+        &__button { margin: 0 25px 0 15px; max-width: 150px}
+
+    }
 }

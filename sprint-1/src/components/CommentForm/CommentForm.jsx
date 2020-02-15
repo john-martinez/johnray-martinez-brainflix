@@ -14,9 +14,9 @@ class CommentForm extends Component {
                 <div className="comment-form__right comment-form__section">
                     <div className="comment-form__field">
                         <label className="comment-form__label" htmlFor="comment">Join The Conversation</label>
-                        <textarea name="comment" id="comment" className="comment-form__input text-area" placeholder="Add a new comment"></textarea>
                     </div>
-                    <div className="comment-form__field">
+                    <div className="comment-form__field--flex">
+                        <textarea name="comment" className="comment-form__input" placeholder="Add a new comment"></textarea>
                         <button className="comment-form__button">COMMENT</button>
                     </div>
                 </div> 

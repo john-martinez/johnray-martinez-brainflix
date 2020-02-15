@@ -4,8 +4,6 @@ import views from '../../assets/Icons/SVG/Icon-views.svg';
 import likes from '../../assets/Icons/SVG/Icon-likes.svg';
 import './Video.scss';
 
-
-
 function Video(props){
     let year = new Date(props.mainVideo.timestamp).getFullYear();
     let month = new Date(props.mainVideo.timestamp).getMonth();    
@@ -15,7 +13,7 @@ function Video(props){
             <VideoPlayer video={props.mainVideo} />
             <div className="video__details">
                 <h2 className="video__title">{props.mainVideo.title}</h2>
-                <div class="video__blurb">
+                <div className="video__blurb">
                     <div className="video__details--flex">
                         <p className="video__channel"><strong>{props.mainVideo.channel}</strong></p>
                         <span className="video__timestamp">{`${month}/${day}/${year}`}</span>

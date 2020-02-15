@@ -1,3 +1,7 @@
+@import '../../assets/Partials/mixins';
+
 .comment-section {
     padding: 5%;
+
+    @include tablet { padding: 2% }
 }

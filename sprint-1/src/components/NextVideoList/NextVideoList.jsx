@@ -5,14 +5,17 @@ import './NextVideoList.scss';
 
 class NextVideoList extends Component {
     render(){
+        const container = [];
+        videos.forEach(item=>{
+            if (item.id !== this.props.mainVideoId)
+                container.push(<NextVideo image={item} key={item.id} />) 
+        })
         return (
             <section className="next-video-list">
                 <h4>NEXT VIDEO</h4>
-                {videos
-                .filter(item=>item.id !== this.props.mainVideoId)
-                .map(item=><NextVideo image={item} key={item.id} /> )}
+                {container}
             </section>    
-        );
+        );  
     }
 }
 

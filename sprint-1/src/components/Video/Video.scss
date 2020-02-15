@@ -15,6 +15,7 @@
         display: flex; 
         height: 30px;
     }
+    &__stats { margin-right: 10px }
     &__stat-value { margin-left: 4px }
     &__stat-icon { transform: translateY(2px);}
     &__blurb { 
@@ -25,6 +26,7 @@
     }
 
     @include tablet {
+        &__details { padding: 2% }
         &__blurb { flex-direction: row }
         &__stats { padding-left: 10px }
         &__description { width: 70% }   

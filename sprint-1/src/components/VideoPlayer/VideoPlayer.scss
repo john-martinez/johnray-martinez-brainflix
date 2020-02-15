@@ -33,16 +33,14 @@
 
     &__play-button { 
         width: 40px;
-        &:hover {
-            background-color: rgba(0,0,0,0.6);
-        }
+        &:hover { background-color: rgba(0,0,0,0.6) }
     }
     &__side {
-        padding: 6px 0;
+        padding: 0;
         > * { 
-            margin: 0 10px;
             display: inline-block;
             vertical-align: middle;
+            height: 100%;
         } 
     }
     
@@ -61,6 +59,17 @@
         width: 100%;
         height: 4px;
     }
+
+    &__fullscreen,
+    &__volume { 
+        border-radius: 5px;
+        padding: 6px 10px;
+        &:hover { 
+            background-color: rgba(0,0,0,0.3) 
+        } 
+    }
+   
+
 
     @include tablet {
         &__video {
