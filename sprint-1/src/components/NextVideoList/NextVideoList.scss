@@ -1,5 +1,12 @@
+@import '../../assets/Partials/mixins';
+
 .next-video-list {
     display: flex;
     flex-direction: column;
     padding: 5%;
+    max-width: 450px;
+
+    @include tablet {
+        padding: 2%;
+    }
 }

@@ -3,7 +3,10 @@
     margin: 10px 0;
     flex-grow: 1;
     height: 75px;
-    &__left { flex: 1 0 40% }
+    &__left { 
+        flex: 1 0 40%;
+        max-width: 150px;
+     }
     &__right { flex: 1 0 60%; padding-left: 10px }
     &__image {
         width: 100%;
