@@ -8,21 +8,26 @@ import fullscreen from '../../assets/Icons/SVG/Icon-fullscreen.svg';
 function VideoPlayer(props){
     let playState = "paused";
     const changeIcon = e => {
+        let playButton = document.querySelector('.video-player__play-button');
         if (playState === "paused") {
             playState = "play";
-            e.target.src = pause;
+            playButton.src = pause;
         } else {
             playState = "paused";
-            e.target.src = play;
+            playButton.src = play;
         }
     }
+    document.addEventListener("keyup", e=>{
+        e.preventDefault();
+        e.keyCode === 13 ? changeIcon() : console.log(e.keyCode);
+    }) 
     return(
-        <div className="video-player">
+        <div className="video-player" onClick={changeIcon} >
           <video className="video-player__video" poster={props.video.image} ></video>
             <div className="video-player__controls">
                 <img alt="play button" onClick={changeIcon} src={play} className="video-player__play-button" /> 
                 <div className="video-player__scrubber-bar"> 
-                    <hr className="video-player__scrubber-line"/>
+                    <div className="video-player__scrubber-line"> </div>
                 </div>
                 <div className="video-player__side">
                     <img alt="fullscreen button" src={fullscreen} className="video-player__fullscreen" /> 
