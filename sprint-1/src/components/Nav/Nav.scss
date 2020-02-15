@@ -77,4 +77,5 @@
             max-width: 250px; 
          }
     }
+    @include desktop { padding: 0 10% }
 }

@@ -4,9 +4,13 @@
     display: flex;
     flex-direction: column;
     padding: 5%;
-    max-width: 450px;
+    width: 350px;
 
-    @include tablet {
-        padding: 2%;
+    flex: 0 0 30%;
+
+    @include tablet { padding: 2% }
+    @include desktop { 
+        padding: 0 0 0 25px;
+        border-left: 2px solid lightgray;
     }
 }

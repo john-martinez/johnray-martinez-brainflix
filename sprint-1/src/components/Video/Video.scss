@@ -1,6 +1,10 @@
 @import '../../assets/Partials/mixins';
 
 .video {
+    &__main-container { 
+        display: flex; 
+        flex-direction: column;
+    }
     &__details { 
         padding: 5%;
 
@@ -25,10 +29,22 @@
         flex-direction: column;
     }
 
+    &__details { 
+        display: flex;
+        flex-direction: column;
+    }
     @include tablet {
         &__details { padding: 2% }
         &__blurb { flex-direction: row }
         &__stats { padding-left: 10px }
         &__description { width: 70% }   
+    }
+
+    @include desktop {
+        &__main-container { 
+            flex-direction: row;
+            padding: 0 10%;
+        }
+        &__details { padding:0 }
     }
 }

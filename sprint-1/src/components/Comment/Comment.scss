@@ -3,7 +3,7 @@
 .comment {
     display: flex;
     padding: 10px 0;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 2px solid lightgray;
 
     &__author { font-family: $primary-font-bold }
     &__time-stamp { margin-left: 5px }
