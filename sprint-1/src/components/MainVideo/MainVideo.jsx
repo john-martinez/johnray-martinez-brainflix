@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Video from '../Video/Video';
 import CommentSection from '../CommentSection/CommentSection';
-import videoData from '../../assets/Imports/videos';
+import mainVideo from '../../assets/Imports/mainVideo';
 
 class MainVideo extends Component {
     constructor(){
         super()
-        this.state = {mainVideo: videoData}
+        this.state = {mainVideo}
     }
     render(){
         return(

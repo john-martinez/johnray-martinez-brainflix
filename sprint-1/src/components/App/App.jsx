@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import NextVideoList from '../NextVideoList/NextVideoList';
 import MainVideo from '../MainVideo/MainVideo';
 import './App.scss';
-import mainVideo from '../../assets/Imports/videos';
+import mainVideo from '../../assets/Imports/mainVideo';
 
 class App extends Component {
   constructor(props){

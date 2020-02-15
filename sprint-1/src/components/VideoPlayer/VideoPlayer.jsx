@@ -9,14 +9,15 @@ function VideoPlayer(props){
     // todos: add setTimeout to add delay to the controls when transitioning to hidden again
     // add icon in the middle to see what is the playState of the video
     // controls should autohide after 3 secs after mouse stops moving when in full screen mode
-    // fix the bug where pressing spacebar while in input texts changes the playState
+    // fix the bug where pressing spacebar while in input texts changes the playState *** FIXED ***
     // fix the bug where playState changes even when clicking full screen buttons or volume *** FIXED ***
+    // fix duration of video
 
     // EVENT LISTENER TO CHANGE ICON WHEN PRESSING SPACEBAR OR WHEN CLICKING THE VIDEO OR THE PLAY/PAUSE BUTTON
     let playState = "paused";
     const changeIcon = e => {
         e.stopPropagation();
-        if (e.target.classList[0] === 'video-player__play-button' || e.target.classList[0] === 'video-player__video' || e.code === 'Space'){
+        if (e.target.classList[0] === 'video-player__play-button' || e.target.classList[0] === 'video-player__video' || (e.code === 'Space' && document.activeElement !== document.querySelector('textarea'))){
             let playButton = document.querySelector('.video-player__play-button');
             if (playState === "paused") {
                 playState = "play";
@@ -40,6 +41,7 @@ function VideoPlayer(props){
                 <img alt="play button" onClick={changeIcon} src={play} className="video-player__play-button" /> 
                 <div className="video-player__scrubber-bar"> 
                     <div className="video-player__scrubber-line"> </div>
+                    <span className="video-player__time-left"> 0:00/{`0:${props.video.duration/1000}`} </span>
                 </div>
                 <div className="video-player__side">
                     <img alt="fullscreen button" src={fullscreen} className="video-player__fullscreen" /> 
