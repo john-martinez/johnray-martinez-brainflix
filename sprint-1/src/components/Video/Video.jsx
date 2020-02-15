@@ -15,19 +15,21 @@ function Video(props){
             <VideoPlayer video={props.mainVideo} />
             <div className="video__details">
                 <h2 className="video__title">{props.mainVideo.title}</h2>
-                <div className="video__details--flex">
-                    <p className="video__channel"><strong>{props.mainVideo.channel}</strong></p>
-                    <span className="video__timestamp">{`${month}/${day}/${year}`}</span>
-                </div>  
-                <div className="video__stats-container">
-                    <span className="video__stats">
-                        <img className="video__stat-icon" src={views} alt="views icon"/>
-                        <span className="video__stat-value"> {props.mainVideo.views} </span>
-                    </span>
-                    <span className="video__stats">
-                        <img className="video__stat-icon" src={likes} alt="likes icon"/>
-                        <span className="video__stat-value"> {props.mainVideo.likes} </span>
-                    </span>
+                <div class="video__blurb">
+                    <div className="video__details--flex">
+                        <p className="video__channel"><strong>{props.mainVideo.channel}</strong></p>
+                        <span className="video__timestamp">{`${month}/${day}/${year}`}</span>
+                    </div>  
+                    <div className="video__stats-container">
+                        <span className="video__stats">
+                            <img className="video__stat-icon" src={views} alt="views icon"/>
+                            <span className="video__stat-value"> {props.mainVideo.views} </span>
+                        </span>
+                        <span className="video__stats">
+                            <img className="video__stat-icon" src={likes} alt="likes icon"/>
+                            <span className="video__stat-value"> {props.mainVideo.likes} </span>
+                        </span>
+                    </div>
                 </div>
                 <hr />
                 <p className="video__description"> {props.mainVideo.description} </p>
