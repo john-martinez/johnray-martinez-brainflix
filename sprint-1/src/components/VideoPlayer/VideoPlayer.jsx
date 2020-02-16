@@ -12,7 +12,7 @@ function VideoPlayer(props){
     // fix the bug where pressing spacebar while in input texts changes the playState *** FIXED ***
     // fix the bug where playState changes even when clicking full screen buttons or volume *** FIXED ***
     // fix duration of video
-
+    
     // EVENT LISTENER TO CHANGE ICON WHEN PRESSING SPACEBAR OR WHEN CLICKING THE VIDEO OR THE PLAY/PAUSE BUTTON
     let playState = "paused";
     const changeIcon = e => {
