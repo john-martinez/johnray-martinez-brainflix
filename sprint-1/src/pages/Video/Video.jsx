@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
-import CommentSection from '../CommentSection/CommentSection';
-import NextVideoList from '../NextVideoList/NextVideoList';
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
+import CommentSection from '../../components/CommentSection/CommentSection';
+import NextVideoList from '../../components/NextVideoList/NextVideoList';
 import views from '../../assets/Icons/SVG/Icon-views.svg';
 import likes from '../../assets/Icons/SVG/Icon-likes.svg';
 import mainVideo from '../../assets/Imports/mainVideo';
@@ -17,7 +17,7 @@ class Video extends Component {
         return (
             <section className="video">
                 <VideoPlayer video={this.state.mainVideo} />
-                <div class="video__main-container">
+                <div className="video__main-container">
                     <div className="video__details">
                         <h2 className="video__title">{this.state.mainVideo.title}</h2>
                         <div className="video__blurb">
@@ -40,7 +40,7 @@ class Video extends Component {
                         <p className="video__description"> {this.state.mainVideo.description} </p>
                         <CommentSection comments={this.state.mainVideo.comments}/>
                     </div>
-                    <NextVideoList mainVideoId={this.state.mainVideoId}/>
+                    <NextVideoList mainVideoId={this.state.mainVideo.id}/>
                 </div>
             </section>
         );

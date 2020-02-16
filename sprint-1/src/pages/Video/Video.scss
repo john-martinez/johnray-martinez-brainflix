@@ -3,7 +3,7 @@
 .video {
     &__main-container { 
         display: flex; 
-        flex-direction: column;
+        flex-direction: column; 
     }
     &__details { 
         padding: 5%;
@@ -27,6 +27,7 @@
         align-items: baseline;
         justify-content: space-between;
         flex-direction: column;
+        flex-wrap: wrap;
     }
 
     &__details { 
@@ -36,7 +37,7 @@
     @include tablet {
         &__details { padding: 2% }
         &__blurb { flex-direction: row }
-        &__stats { padding-left: 10px }
+        // &__stats { padding-left: 10px }
         &__description { width: 70% }   
     }
 

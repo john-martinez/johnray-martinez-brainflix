@@ -86,4 +86,8 @@
         &__controls { padding: 5px 10% }    
         &__time-left { display: inline-block }    
     }
+    @include desktop { 
+        &__video { padding: 0 15% } 
+        &__controls { padding: 5px 17% } 
+    }
 }

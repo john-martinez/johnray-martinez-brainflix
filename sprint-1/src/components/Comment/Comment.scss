@@ -1,4 +1,5 @@
 @import '../../assets/Partials/variables';
+@import '../../assets/Partials/mixins';
 
 .comment {
     display: flex;
@@ -25,9 +26,7 @@
             border-radius: 100px;
             width: 100%; 
             cursor: pointer; 
-            // @include change-bgcolor-on-hover($white);
         }
-
     } 
-    // @include tablet { &__header { justify-content: flex-start } }
+    @include desktop { padding: 20px 10px 10px 0 }
 }

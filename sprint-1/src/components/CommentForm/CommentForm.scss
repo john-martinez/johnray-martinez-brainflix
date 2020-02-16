@@ -68,12 +68,10 @@
     @include tablet {
         &__field { 
             flex-direction: row;
-
             &--flex { height: 50px }
         }
         &__picture { margin-top: 24px; height: 50px; width: 50px }
         &__input { overflow-y: hidden }
         &__button { margin: 0 25px 0 15px; max-width: 150px}
-
     }
 }
