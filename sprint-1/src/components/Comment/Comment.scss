@@ -4,7 +4,7 @@
 .comment {
     display: flex;
     padding: 10px 0;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 2px solid $silver;
 
     &__author { font-family: $primary-font-bold }
     &__time-stamp { margin-left: 5px }

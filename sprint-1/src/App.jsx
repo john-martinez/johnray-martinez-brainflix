@@ -16,7 +16,6 @@ class App extends Component {
             <Route><NotFound /></Route>
           </Switch>
         </BrowserRouter>
-        
       </main>
     );
   }

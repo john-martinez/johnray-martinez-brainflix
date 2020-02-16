@@ -13,6 +13,7 @@
 
         > * { margin-bottom: 10px}
     }
+    
     &__search { 
         padding: 15px; 
         height: 100%;
@@ -86,7 +87,7 @@
         &__button { font-size: 1rem }
         &__search-container { 
             margin: 0 20px;
-            max-width: 250px; 
+            max-width: 350px; 
         }
         &__uload-text { display: none }
 

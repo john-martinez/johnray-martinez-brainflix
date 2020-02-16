@@ -22,7 +22,7 @@ class Video extends Component {
                         <h2 className="video__title">{this.state.mainVideo.title}</h2>
                         <div className="video__blurb">
                             <div className="video__details--flex">
-                                <p className="video__channel"><strong>{this.state.mainVideo.channel}</strong></p>
+                                <span className="video__channel"><strong>{this.state.mainVideo.channel}</strong></span>
                                 <span className="video__timestamp">{`${this.month}/${this.day}/${this.year}`}</span>
                             </div>  
                             <div className="video__stats-container">

@@ -13,8 +13,8 @@
             align-items: baseline;
         }
     }
-    &__timestamp { margin-left: 10px }
-    &__title { font-family: "AvenirHeavy" }
+    &__timestamp { margin-left: 10px; font-size: 1.1rem }
+    &__title { font-family: "AvenirBold"; font-size: 2rem; margin-bottom: 5px}
     &__stats-container {
         display: flex; 
         height: 30px;
@@ -28,7 +28,10 @@
         justify-content: space-between;
         flex-direction: column;
         flex-wrap: wrap;
+        > * {  margin-top: 10px }
     }
+
+    &__channel { font-size: 1.4rem }
 
     &__details { 
         display: flex;

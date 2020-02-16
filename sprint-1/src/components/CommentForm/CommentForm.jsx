@@ -5,8 +5,8 @@ import user from '../../assets/Images/Mohan-muruge.jpg';
 class CommentForm extends Component {
     render(){
         return (
-        <article className="article">
-            <h2 className="article__header">{this.props.commentsLength} Comments</h2>
+        <>
+            <h2 className="comment-form__header">{this.props.commentsLength} Comments</h2>
             <form action="" className="comment-form">
                 <div className="comment-form__left">
                     <img className="comment-form__picture" alt="Mohan looking left" src={user}></img>
@@ -21,7 +21,7 @@ class CommentForm extends Component {
                     </div>
                 </div> 
             </form>
-        </article>
+        </>
         );
     }
 }
