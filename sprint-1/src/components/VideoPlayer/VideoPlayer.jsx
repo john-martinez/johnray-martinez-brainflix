@@ -75,7 +75,7 @@ function VideoPlayer(props){
                     <img alt="volume" src={volume} className="video-player__volume" /> 
                 </div>
             </div>
-            <img className="video-player__middle-icon" src={play} onClick={changeIcon}></img>
+            <img className="video-player__middle-icon" src={play} onClick={changeIcon} alt="play or pause button"></img>
         </div>
     );
 }
