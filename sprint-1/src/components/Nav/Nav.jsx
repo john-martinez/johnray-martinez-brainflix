@@ -18,7 +18,10 @@ class Nav extends Component {
                 <img src={search} className="nav__search-icon" alt="magnifying glass"></img>
               </div>
               <div className="nav__actions">
-                  <button className="nav__button"> <img className="nav__upload-icon" src={upload} /> UPLOAD </button>
+                  <button className="nav__button"> 
+                    <img className="nav__upload-icon" src={upload}  alt="upload icon" /> 
+                    <span className="nav__uload-text">UPLOAD</span> 
+                  </button>
                   <img src={user} className="nav__user" alt="Mohan Murugi side view"></img>
               </div>
             </div>
