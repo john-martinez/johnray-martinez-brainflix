@@ -30,7 +30,7 @@
         &--flex { height: auto }
     }
     &__picture { margin-top: 27px; height: 55px; width: 55px }
-    &__input { overflow-y: visible; height: 150px }
+    &__input { overflow-y: visible}
     &__button { margin: 15px 12px 0 0; max-width: 100% }
     @content;
 }
