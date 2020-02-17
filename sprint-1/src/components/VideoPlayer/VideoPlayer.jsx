@@ -61,6 +61,8 @@ function VideoPlayer(props){
         },2000);
     }
 
+    // const fullScreenVideo = e => document.querySelector('.video-player__video').requestFullscreen(); // Need more research for this, generates default controls
+
     return(
         <div className="video-player" onClick={changeIcon} onMouseMove={showControls} >
             <video className="video-player__video" poster={props.video.image} ></video>
