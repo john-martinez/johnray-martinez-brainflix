@@ -24,7 +24,7 @@ function VideoPlayer(props){
         if (e.target === playButton ||
             e.target === middleIcon || 
             e.target.classList[0] === 'video-player__video' || 
-            (e.code === 'Space' && document.activeElement !== document.querySelector('textarea'))){
+            (e.code === 'Space' && document.activeElement.localName !== "input" && document.activeElement.localName !== "textarea")){
             if (playState === "paused") {
                 playState = "play";
                 playButton.src = pause;
