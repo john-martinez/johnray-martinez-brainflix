@@ -15,16 +15,28 @@ class Video extends Component {
     state = { mainVideo: {}, nextVideosList: {} }
 
     componentDidMount() {
+        let { videoId } = this.props.match.params;
         let nextVideosListContainer = [];
-        axios.get(`${LINK}${PATH}${API_KEY}`)
-        .then(nextVideosList=>nextVideosListContainer=nextVideosList.data)
-        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${nextVideosListContainer[0].id}${API_KEY}`))
+        axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
+        .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
+        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${videoId ? videoId : nextVideosListContainer[0].id }${API_KEY}`)) 
         .then(res=>this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}))
         .catch(err=>console.log(err));
     }
+
+    componentDidUpdate(_, nextState){
+        // console.log('COMPONENT DID UPDATE TRIGGERED');
+        console.log(nextState.mainVideo.id !== this.state.mainVideo.id);
+        if (nextState.mainVideo.id === this.state.mainVideo.id){
+            document.querySelector('.video-player').scrollIntoView();
+            axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
+            .then(res=>this.setState({mainVideo: res.data}))
+            .catch(err=>console.log(err))
+        }
+    }
+
     render() {
-        if (Object.entries(this.state.mainVideo).length){
-            console.log(this.state.mainVideo);
+        if (Object.entries(this.state.mainVideo).length){ // check if object is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
             let month = new Date(this.state.mainVideo.timestamp).getMonth();    
             let day = new Date(this.state.mainVideo.timestamp).getDate();
@@ -54,7 +66,7 @@ class Video extends Component {
                             <p className="video__description"> {this.state.mainVideo.description} </p>
                             <CommentSection comments={this.state.mainVideo.comments}/>
                         </div>
-                        <NextVideoList mainVideoId={this.state.mainVideo.id}/>
+                        <NextVideoList nextVideoList={this.state.nextVideosList} mainVideoId={this.state.mainVideo.id} />
                     </div>
                 </section>
             );

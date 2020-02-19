@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import NextVideo from '../NextVideo/NextVideo';
-import videos from '../../assets/Imports/sideVideo';
+import { Link } from 'react-router-dom';
 import './NextVideoList.scss';
 
 class NextVideoList extends Component {
     render(){
         const nextVideoList = [];
-        videos.forEach(item=>{
+        this.props.nextVideoList.forEach(item=>{
             if (item.id !== this.props.mainVideoId)
-                nextVideoList.push(<NextVideo image={item} key={item.id} />) 
+                nextVideoList.push(<Link to={item.id} key={item.id} > <NextVideo image={item} /> </Link>) 
         })
         return (
             <section className="next-video-list">
@@ -19,4 +19,4 @@ class NextVideoList extends Component {
     }
 }
 
-export default NextVideoList;
+export default NextVideoList; 
