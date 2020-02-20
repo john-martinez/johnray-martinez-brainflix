@@ -25,7 +25,7 @@ class Video extends Component {
 
     componentDidUpdate(_, prevState){
         if (this.props.match.params.videoId && 
-            this.props.match.params.videoId !== this.state.mainVideo.id){
+            this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
             document.querySelector('.video-player').scrollIntoView();
             axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
             .then(res=>this.setState({mainVideo: res.data}))
@@ -71,7 +71,7 @@ class Video extends Component {
                             </div>
                             <hr />
                             <p className="video__description"> {this.state.mainVideo.description} </p>
-                            <CommentSection comments={this.state.mainVideo} getFormData={this.getFormData}/>
+                            <CommentSection comments={this.state.mainVideo.comments} getFormData={this.getFormData}/>
                         </div>
                         <NextVideoList nextVideoList={this.state.nextVideosList} mainVideoId={this.state.mainVideo.id} />
                     </div>

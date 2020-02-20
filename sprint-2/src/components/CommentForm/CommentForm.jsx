@@ -8,7 +8,6 @@ function CommentForm (props){
         props.getFormData(e);
         e.target.reset();
     };
-
     return (
     <>
         <h2 className="comment-form__header">{props.commentsLength} Comments</h2>
