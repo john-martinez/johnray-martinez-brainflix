@@ -20,6 +20,7 @@ function VideoPlayer(props){
     const changeIcon = e => {
         let playButton = document.querySelector('.video-player__play-button');
         let middleIcon = document.querySelector('.video-player__middle-icon');
+        let video = document.querySelector('.video-player__video');
         e.stopPropagation();
         if (e.target === playButton ||
             e.target === middleIcon || 
@@ -29,10 +30,12 @@ function VideoPlayer(props){
                 playState = "play";
                 playButton.src = pause;
                 middleIcon.src = pause;
+                video.play();
             } else {
                 playState = "paused";
                 playButton.src = play;
                 middleIcon.src = play;
+                video.pause();
             }
             clearTimeout(timeoutId2);
             middleIcon.classList.add('visible');
@@ -65,7 +68,7 @@ function VideoPlayer(props){
 
     return(
         <div className="video-player" onClick={changeIcon}  >
-            <video className="video-player__video" poster={props.video.image} onMouseMove={showControls} ></video>
+            <video className="video-player__video" poster={props.video.image} onMouseMove={showControls}  ></video>
             <div className="video-player__controls">
                 <img alt="play button" onClick={changeIcon} src={play} className="video-player__play-button" /> 
                 <div className="video-player__scrubber-bar"> 

@@ -6,7 +6,9 @@
     margin: 10px 0;
     height: 85px;
     margin-bottom: 15px;
+    cursor: pointer;
 
+    &:hover { .next-video__image { border: 2px solid orange } }
     &__left { 
         flex: 1 0 125px;
         width: 75px;
@@ -17,11 +19,7 @@
         height: 100%;
         border-radius: 5px;
     }
-    cursor: pointer;
-
-    &:hover { 
-        .next-video__image { border: 2px solid orange }
-    }
+    
 
     @include desktop { 
         &__left { 

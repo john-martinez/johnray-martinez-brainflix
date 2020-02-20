@@ -8,7 +8,7 @@ class CommentSection extends Component {
     render(){
         return (
             <section className="comment-section" >
-                <CommentForm commentsLength={this.props.comments.length} />
+                <CommentForm commentsLength={this.props.comments.length} getFormData={this.props.getFormData} />
                 <CommentList comments={this.props.comments}/>
             </section>
         )

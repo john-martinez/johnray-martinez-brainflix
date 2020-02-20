@@ -8,16 +8,14 @@ import './App.scss';
 class App extends Component {
   render() {
     return (
-      <main>
-        <Header />
         <BrowserRouter>
+        <Header />
           <Switch>
             <Route exact path="/" render={props=><Video {...props}/>} />
-            <Route path="/:videoId" component={Video}/>
+            <Route exact path="/:videoId" component={Video}/>
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
-      </main>
     );
   }
 }

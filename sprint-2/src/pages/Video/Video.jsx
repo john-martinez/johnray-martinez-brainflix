@@ -15,26 +15,33 @@ class Video extends Component {
     state = { mainVideo: {}, nextVideosList: {} }
 
     componentDidMount() {
-        let { videoId } = this.props.match.params;
         let nextVideosListContainer = [];
         axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
         .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
-        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${videoId ? videoId : nextVideosListContainer[0].id }${API_KEY}`)) 
+        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${nextVideosListContainer[0].id }${API_KEY}`)) 
         .then(res=>this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}))
         .catch(err=>console.log(err));
     }
 
-    componentDidUpdate(_, nextState){
-        // console.log('COMPONENT DID UPDATE TRIGGERED');
-        console.log(nextState.mainVideo.id !== this.state.mainVideo.id);
-        if (nextState.mainVideo.id === this.state.mainVideo.id){
+    componentDidUpdate(_, prevState){
+        if (this.props.match.params.videoId && 
+            this.props.match.params.videoId !== this.state.mainVideo.id){
             document.querySelector('.video-player').scrollIntoView();
             axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
             .then(res=>this.setState({mainVideo: res.data}))
             .catch(err=>console.log(err))
-        }
+        } 
     }
 
+    getFormData = e => {
+        axios.post(`https://project-2-api.herokuapp.com/videos/${this.state.mainVideo.id}/comments?api_key=14730dbf-fa5a-4549-af89-30a311f43d00`, {
+            name: 'BrainStation Guy', 
+            comment: e.target.comment.value
+        })
+        .then(res=>axios.get(`https://project-2-api.herokuapp.com/videos/${this.state.mainVideo.id}?api_key=14730dbf-fa5a-4549-af89-30a311f43d00`))
+        .then(res=>this.setState({mainVideo: res.data}))
+        .catch(err=>console.log(err));
+    }
     render() {
         if (Object.entries(this.state.mainVideo).length){ // check if object is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
@@ -42,7 +49,7 @@ class Video extends Component {
             let day = new Date(this.state.mainVideo.timestamp).getDate();
             return (
                 <section className="video">
-                    <VideoPlayer video={this.state.mainVideo} />
+                    <VideoPlayer video={this.state.mainVideo} mainVideoUrl={this.state.mainVideoUrl}/>
                     <div className="video__main-container">
                         <div className="video__details">
                             <h2 className="video__title">{this.state.mainVideo.title}</h2>
@@ -64,7 +71,7 @@ class Video extends Component {
                             </div>
                             <hr />
                             <p className="video__description"> {this.state.mainVideo.description} </p>
-                            <CommentSection comments={this.state.mainVideo.comments}/>
+                            <CommentSection comments={this.state.mainVideo} getFormData={this.getFormData}/>
                         </div>
                         <NextVideoList nextVideoList={this.state.nextVideosList} mainVideoId={this.state.mainVideo.id} />
                     </div>
