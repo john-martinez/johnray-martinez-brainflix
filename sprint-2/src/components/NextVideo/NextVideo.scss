@@ -11,7 +11,7 @@
     &:hover { .next-video__image { border: 2px solid orange } }
     &__left { 
         flex: 1 0 125px;
-        width: 75px;
+        max-width: 175px;
      }
     &__right { flex: 1 0 60%; padding-left: 10px }
     &__image {

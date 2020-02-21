@@ -26,8 +26,10 @@ function Comment(props) {
               let toConvertMonths = (new Date(toConvert).getFullYear()*12) + (new Date(toConvert).getMonth()+1);
               // subtract the results and you will get the results in months format
               res = rightNowMonths - toConvertMonths; 
-              if (res >= 12) return `${Math.floor(res/12)} yr${(Math.floor(res/12)>=2)?'s':''} ago`;
-              else return `${res} mon${res!== 1?'s':''} ago`;
+              if (res >= 12) 
+                return `${Math.floor(res/12)} yr${(Math.floor(res/12)>=2)?'s':''} ago`;
+              else 
+                return `${res} mon${res!== 1?'s':''} ago`;
             }
             else  {
               // cycle through the time array and divide res by time[i].divider
@@ -37,7 +39,8 @@ function Comment(props) {
               else res /= time[i].divider;
             }
           }
-        } else return `Just now`;
+        } else 
+          return `Just now`;
       } 
 
     return (

@@ -13,41 +13,51 @@ const PATH = '/videos';
 
 class Video extends Component {
     state = { mainVideo: {}, nextVideosList: {} }
+    stillMounted = false;
+    
 
     componentDidMount() {
+        this.stillMounted = true;
         let nextVideosListContainer = [];
         let { videoId } = this.props.match.params;
         axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
         .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
         .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${videoId ? videoId : nextVideosListContainer[0].id}${API_KEY}`)) 
-        .then(res=>this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}))
+        .then(res=>this.stillMounted ? this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}) : '')
         .catch(err=>console.log(err));
     }
 
-    componentDidUpdate(_, prevState){
-        if (this.props.match.params.videoId && 
-            this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
-            document.querySelector('.video-player').scrollIntoView();
-            axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
-            .then(res=>this.setState({mainVideo: res.data}))
-            .catch(err=>console.log(err))
-        } 
-    }
+    componentWillUnmount(){ this.stillMounted = false }
 
     getFormData = e => {
-        axios.post(`https://project-2-api.herokuapp.com/videos/${this.state.mainVideo.id}/comments?api_key=14730dbf-fa5a-4549-af89-30a311f43d00`, {
+        console.log(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`);
+        axios.post(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`, {
             name: 'BrainStation Guy', 
             comment: e.target.comment.value
         })
-        .then(res=>axios.get(`https://project-2-api.herokuapp.com/videos/${this.state.mainVideo.id}?api_key=14730dbf-fa5a-4549-af89-30a311f43d00`))
-        .then(res=>this.setState({mainVideo: res.data}))
+        .then(res=>axios.get(`${LINK}${PATH}/${this.state.mainVideo.id}${API_KEY}`))
+        .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
         .catch(err=>console.log(err));
     }
+
+    changeMainVideo(){
+        if (this.props.match.params.videoId && 
+            this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
+            let mainVid = document.querySelector('.video-player');
+            mainVid && mainVid.scrollIntoView();
+            axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
+            .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
+            .catch(err=>console.log(err))
+        } 
+    }
     render() {
-        if (Object.entries(this.state.mainVideo).length){ // check if object is not empty
+        if (Object.entries(this.state.mainVideo).length){ // check if state is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
             let month = new Date(this.state.mainVideo.timestamp).getMonth();    
             let day = new Date(this.state.mainVideo.timestamp).getDate();
+
+            this.changeMainVideo(); // changes mainVideo
+            console.log('rendered');
             return (
                 <section className="video">
                     <VideoPlayer video={this.state.mainVideo} mainVideoUrl={this.state.mainVideoUrl}/>
@@ -81,7 +91,7 @@ class Video extends Component {
         }
         else {
             return (
-                <h2>LOADING ASSETS</h2>
+                <h2> LOADING ASSETS </h2>
             )
         }
     }
