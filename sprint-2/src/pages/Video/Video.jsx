@@ -27,10 +27,22 @@ class Video extends Component {
         .catch(err=>console.log(err));
     }
 
+
+    componentDidUpdate(prevProps, prevState){ 
+        if (this.props.match.path === '/' && 
+            this.state.mainVideo.id !== this.state.nextVideosList[0].id) {
+                let mainVid = document.querySelector('.video-player'); 
+                mainVid && mainVid.scrollIntoView();
+                axios.get(`${LINK}${PATH}/${this.state.nextVideosList[0].id}${API_KEY}`)
+                .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
+                .catch(err=>console.log(err))
+        } else {
+            this.changeMainVideo(); // changes mainVideoState when 
+        }
+    }
     componentWillUnmount(){ this.stillMounted = false }
 
     getFormData = e => {
-        console.log(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`);
         axios.post(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`, {
             name: 'BrainStation Guy', 
             comment: e.target.comment.value
@@ -43,7 +55,7 @@ class Video extends Component {
     changeMainVideo(){
         if (this.props.match.params.videoId && 
             this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
-            let mainVid = document.querySelector('.video-player');
+            let mainVid = document.querySelector('.video-player'); 
             mainVid && mainVid.scrollIntoView();
             axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
             .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
@@ -51,13 +63,11 @@ class Video extends Component {
         } 
     }
     render() {
-        if (Object.entries(this.state.mainVideo).length){ // check if state is not empty
+        if (this.state.mainVideo.id){ // check if state is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
             let month = new Date(this.state.mainVideo.timestamp).getMonth();    
             let day = new Date(this.state.mainVideo.timestamp).getDate();
-
-            this.changeMainVideo(); // changes mainVideo
-            console.log('rendered');
+ 
             return (
                 <section className="video">
                     <VideoPlayer video={this.state.mainVideo} mainVideoUrl={this.state.mainVideoUrl}/>
