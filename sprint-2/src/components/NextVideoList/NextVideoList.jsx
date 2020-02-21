@@ -7,8 +7,13 @@ class NextVideoList extends Component {
     render(){
         const nextVideoList = [];
         this.props.nextVideoList.forEach(item=>{
-            if (item.id !== this.props.mainVideoId)
-                nextVideoList.push(<Link to={item.id} key={item.id} > <NextVideo image={item} /> </Link>) 
+            let newPath = this.props.match.url;
+            newPath = newPath.split('/');
+            newPath.splice(2,1,item.id)
+            newPath = newPath.join('/');
+            if (item.id !== this.props.mainVideoId){
+                nextVideoList.push(<Link to={newPath} key={item.id} > <NextVideo image={item} /> </Link>) 
+            }
         })
         return (
             <section className="next-video-list">

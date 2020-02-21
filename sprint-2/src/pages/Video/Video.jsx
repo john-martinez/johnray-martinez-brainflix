@@ -74,7 +74,7 @@ class Video extends Component {
                             <p className="video__description"> {this.state.mainVideo.description} </p>
                             <CommentSection comments={this.state.mainVideo.comments} getFormData={this.getFormData}/>
                         </div>
-                        <NextVideoList nextVideoList={this.state.nextVideosList} mainVideoId={this.state.mainVideo.id} />
+                        <NextVideoList match={this.props.match} nextVideoList={this.state.nextVideosList} mainVideoId={this.state.mainVideo.id} />
                     </div>
                 </section>
             );
