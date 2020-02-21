@@ -6,6 +6,7 @@
     &__video {
         width: 100%;
         height: auto;
+        max-height: 400px;
     }
     &__controls {
         position: absolute;

@@ -16,9 +16,10 @@ class Video extends Component {
 
     componentDidMount() {
         let nextVideosListContainer = [];
+        let { videoId } = this.props.match.params;
         axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
         .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
-        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${nextVideosListContainer[0].id }${API_KEY}`)) 
+        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${videoId ? videoId : nextVideosListContainer[0].id}${API_KEY}`)) 
         .then(res=>this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}))
         .catch(err=>console.log(err));
     }

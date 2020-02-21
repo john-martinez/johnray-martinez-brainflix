@@ -20,7 +20,7 @@ function VideoPlayer(props){
     const changeIcon = e => {
         let playButton = document.querySelector('.video-player__play-button');
         let middleIcon = document.querySelector('.video-player__middle-icon');
-        let video = document.querySelector('.video-player__video');
+        // let video = document.querySelector('.video-player__video');
         e.stopPropagation();
         if (e.target === playButton ||
             e.target === middleIcon || 
@@ -30,12 +30,10 @@ function VideoPlayer(props){
                 playState = "play";
                 playButton.src = pause;
                 middleIcon.src = pause;
-                video.play();
             } else {
                 playState = "paused";
                 playButton.src = play;
                 middleIcon.src = play;
-                video.pause();
             }
             clearTimeout(timeoutId2);
             middleIcon.classList.add('visible');

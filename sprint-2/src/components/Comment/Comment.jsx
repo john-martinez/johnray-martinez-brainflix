@@ -32,7 +32,8 @@ function Comment(props) {
             else  {
               // cycle through the time array and divide res by time[i].divider
               // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
-              if (Math.round(res) < time[i].divider) return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`; 
+              if (Math.round(res) < time[i].divider) 
+                return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`; 
               else res /= time[i].divider;
             }
           }
