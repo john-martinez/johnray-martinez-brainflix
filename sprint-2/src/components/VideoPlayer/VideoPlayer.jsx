@@ -20,7 +20,6 @@ function VideoPlayer(props){
     const changeIcon = e => {
         let playButton = document.querySelector('.video-player__play-button');
         let middleIcon = document.querySelector('.video-player__middle-icon');
-        // let video = document.querySelector('.video-player__video');
         e.stopPropagation();
         if (e.target === playButton ||
             e.target === middleIcon || 

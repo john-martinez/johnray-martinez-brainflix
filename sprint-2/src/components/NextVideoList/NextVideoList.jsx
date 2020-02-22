@@ -7,14 +7,8 @@ class NextVideoList extends Component {
     render(){
         const nextVideoList = [];
         this.props.nextVideoList.forEach(item=>{
-            let newPath = this.props.match.url;
-            newPath = newPath.split('/');
-            newPath.splice(2,1,item.id)
-            if (newPath[1] === "")
-                newPath[1] = "videos";
-            newPath = newPath.join('/');
             if (item.id !== this.props.mainVideoId){
-                nextVideoList.push(<Link to={newPath} key={item.id} > <NextVideo image={item} /> </Link>) 
+                nextVideoList.push(<Link to={`/videos/${item.id}`} key={item.id} > <NextVideo image={item} /> </Link>) 
             }
         })
         return (

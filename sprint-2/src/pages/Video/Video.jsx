@@ -13,35 +13,44 @@ const PATH = '/videos';
 
 class Video extends Component {
     state = { mainVideo: {}, nextVideosList: {} }
-    stillMounted = false;
+    stillMounted = false; // flag to check later if component is still mounted. If false, promise will not execute setState which will prevent memory leak bugz
     
-
+    // initialize state after rendering
     componentDidMount() {
         this.stillMounted = true;
         let nextVideosListContainer = [];
-        let { videoId } = this.props.match.params;
         axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
         .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
-        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${videoId ? videoId : nextVideosListContainer[0].id}${API_KEY}`)) 
+        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${nextVideosListContainer[0].id}${API_KEY}`)) 
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}) : '')
-        .catch(err=>console.log(err));
+        .catch(err=>console.log("BAD"));
     }
 
-
     componentDidUpdate(prevProps, prevState){ 
-        if (this.props.match.path === '/' && 
+        if (this.state.mainVideo.id) {
+            if (this.props.match.path === '/' && 
             this.state.mainVideo.id !== this.state.nextVideosList[0].id) {
-                let mainVid = document.querySelector('.video-player'); 
-                mainVid && mainVid.scrollIntoView();
-                axios.get(`${LINK}${PATH}/${this.state.nextVideosList[0].id}${API_KEY}`)
-                .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
-                .catch(err=>console.log(err))
-        } else {
+                this.getRequest(this.state.nextVideosList[0].id);
+        } else 
             this.changeMainVideo(); // changes mainVideoState when 
         }
     }
     componentWillUnmount(){ this.stillMounted = false }
 
+    getRequest = id => {
+        this.mainVid && this.mainVid.scrollIntoView();
+        axios.get(`${LINK}${PATH}/${id}${API_KEY}`)
+        .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
+        .catch(err=>console.log(err))
+    }
+    changeMainVideo(){
+        if (this.props.match.params.videoId && 
+            this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
+            this.getRequest(this.props.match.params.videoId);
+            let mainVid = document.querySelector('.video-player__video'); 
+            mainVid && mainVid.scrollIntoView();
+        } 
+    }
     getFormData = e => {
         axios.post(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`, {
             name: 'BrainStation Guy', 
@@ -51,23 +60,13 @@ class Video extends Component {
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
         .catch(err=>console.log(err));
     }
-
-    changeMainVideo(){
-        if (this.props.match.params.videoId && 
-            this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
-            let mainVid = document.querySelector('.video-player'); 
-            mainVid && mainVid.scrollIntoView();
-            axios.get(`${LINK}${PATH}/${this.props.match.params.videoId}${API_KEY}`)
-            .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
-            .catch(err=>console.log(err))
-        } 
-    }
+    
     render() {
         if (this.state.mainVideo.id){ // check if state is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
             let month = new Date(this.state.mainVideo.timestamp).getMonth();    
             let day = new Date(this.state.mainVideo.timestamp).getDate();
- 
+            
             return (
                 <section className="video">
                     <VideoPlayer video={this.state.mainVideo} mainVideoUrl={this.state.mainVideoUrl}/>
