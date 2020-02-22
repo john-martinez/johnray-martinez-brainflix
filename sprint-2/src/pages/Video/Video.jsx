@@ -17,19 +17,20 @@ class Video extends Component {
     
     // initialize state after rendering
     componentDidMount() {
+        let { videoId } = this.props.match.params;
         this.stillMounted = true;
         let nextVideosListContainer = [];
         axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
         .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
-        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${nextVideosListContainer[0].id}${API_KEY}`)) 
+        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${!videoId ? nextVideosListContainer[0].id : videoId}${API_KEY}`)) 
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}) : '')
-        .catch(err=>console.log("BAD"));
+        .catch(err=>this.props.history.push('/404/')); //goes to not found;
     }
 
-    componentDidUpdate(prevProps, prevState){ 
+    componentDidUpdate(prevProps, prevState){; 
         if (this.state.mainVideo.id) {
             if (this.props.match.path === '/' && 
-            this.state.mainVideo.id !== this.state.nextVideosList[0].id) {
+                this.state.mainVideo.id !== this.state.nextVideosList[0].id) {
                 this.getRequest(this.state.nextVideosList[0].id);
         } else 
             this.changeMainVideo(); // changes mainVideoState when 
