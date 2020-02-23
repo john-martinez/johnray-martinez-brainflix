@@ -12,12 +12,13 @@ class VideoPlayer extends Component {
     // fix the bug where pressing spacebar while in input texts changes the playState *** FIXED ***
     // fix the bug where playState changes even when clicking full screen buttons or volume *** FIXED ***
     // fix duration of video  *** FIXED ***
-    // change play/pause functionality to state based behavior
+    // change play/pause functionality to state based behavior *** FIXED ***
     
     // EVENT LISTENER TO CHANGE ICON WHEN PRESSING SPACEBAR OR WHEN CLICKING THE VIDEO OR THE PLAY/PAUSE BUTTON
-    state = { isPlaying: false } 
+    state = { isPlaying: false} 
     timeoutId = 0;
     timeoutId2 = 0;
+    stillMounted = false; 
 
     changeIcon = e => {
         let playButton = document.querySelector('.video-player__play-button');
@@ -27,7 +28,9 @@ class VideoPlayer extends Component {
             || e.target === middleIcon 
             || e.target.classList[0] === 'video-player__video' 
             || (e.code === 'Space' && document.activeElement.localName !== "input" && document.activeElement.localName !== "textarea")){
-            this.setState({isPlaying: !this.state.isPlaying})
+            if (this.stillMounted) {
+                this.setState({isPlaying: !this.state.isPlaying});
+            }
             clearTimeout(this.timeoutId2);
             middleIcon.classList.add('visible');
             this.timeoutId2 = setTimeout(()=>{
@@ -51,12 +54,17 @@ class VideoPlayer extends Component {
 
     componentDidMount(){
         // callback that changes the playState to pause or play when pressing spacebar  (for now just changes icon)
+        this.stillMounted = true;
         document.addEventListener("keypress", e=>{
-            if (e.keyCode === 32 && e.target === document.body)
+            if (e.keyCode === 32 && e.target === document.body){
                 e.preventDefault(); // to prevent spacebar from scrolling the page
                 this.changeIcon(e);
+            }
         }) 
     }
+
+    componentWillUnmount(){ this.stillMounted = false }
+
     render(){
         return(
             <div className="video-player" onClick={this.changeIcon}  >
