@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import CommentSection from '../../components/CommentSection/CommentSection';
 import NextVideoList from '../../components/NextVideoList/NextVideoList';
+import PacmanLoader from "react-spinners/PacmanLoader";
 import views from '../../assets/icons/SVG/Icon-views.svg';
 import likes from '../../assets/icons/SVG/Icon-likes.svg';
 import axios from 'axios';
@@ -36,9 +37,7 @@ class Video extends Component {
             this.changeMainVideo(); // changes mainVideoState when 
         }
     }
-    componentWillUnmount(){ 
-        console.log("UNMOUNTED");
-        this.stillMounted = false }
+    componentWillUnmount(){ this.stillMounted = false }
 
     getRequest = id => {
         this.mainVid && this.mainVid.scrollIntoView();
@@ -109,7 +108,9 @@ class Video extends Component {
         }
         else {
             return (
-                <h2> LOADING ASSETS </h2>
+                <div className="pacman-loader">
+                    <PacmanLoader size={40} color={"#323232"} />
+                </div>
             )
         }
     }

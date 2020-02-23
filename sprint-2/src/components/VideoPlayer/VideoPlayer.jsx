@@ -11,7 +11,8 @@ function VideoPlayer(props){
     // controls should autohide after 3 secs after mouse stops moving *** FIXED ***
     // fix the bug where pressing spacebar while in input texts changes the playState *** FIXED ***
     // fix the bug where playState changes even when clicking full screen buttons or volume *** FIXED ***
-    // fix duration of video
+    // fix duration of video  *** FIXED ***
+    // change play/pause functionality to state based behavior
     
     // EVENT LISTENER TO CHANGE ICON WHEN PRESSING SPACEBAR OR WHEN CLICKING THE VIDEO OR THE PLAY/PAUSE BUTTON
     let playState = "paused";
@@ -61,7 +62,7 @@ function VideoPlayer(props){
         },2000);
     }
 
-    const fullScreenVideo = e => document.querySelector('.video-player__video').requestFullscreen(); // Need more research for this, generates default controls
+    const fullScreenVideo = e => document.querySelector('.video-player__video').requestFullscreen(); // Need more research for this, doesnt show custom controls
 
     return(
         <div className="video-player" onClick={changeIcon}  >
