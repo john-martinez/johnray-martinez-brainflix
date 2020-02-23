@@ -54,10 +54,10 @@ class Video extends Component {
             mainVid && mainVid.scrollIntoView();
         } 
     }
-    getFormData = e => {
+    getFormData = data => {
         axios.post(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`, {
             name: 'BrainStation Guy', 
-            comment: e.target.comment.value
+            comment: data
         })
         .then(res=>axios.get(`${LINK}${PATH}/${this.state.mainVideo.id}${API_KEY}`))
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')

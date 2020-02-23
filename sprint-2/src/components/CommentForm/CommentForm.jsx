@@ -4,9 +4,17 @@ import user from '../../assets/images/Mohan-muruge.jpg';
 
 function CommentForm (props){
     const onSubmitHandler = e => {
+        const form = e.target;
+        form.comment.classList.remove('wrong-input');
         e.preventDefault();
-        props.getFormData(e);
-        e.target.reset();
+        if (form.comment.value.trim()){
+            props.getFormData(form.comment.value);
+        } else {
+            form.comment.classList.add('shake');
+            form.comment.classList.add('wrong-input');
+            setTimeout(()=>form.comment.classList.remove('shake'), 200);
+        }
+        form.reset();
     };
     return (
     <>
