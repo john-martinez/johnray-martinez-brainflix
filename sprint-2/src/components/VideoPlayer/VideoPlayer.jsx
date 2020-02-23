@@ -66,13 +66,15 @@ class VideoPlayer extends Component {
     componentWillUnmount(){ this.stillMounted = false }
 
     render(){
+        let duration = this.props.video.duration.split(":");
+        let totalDuration = (duration[0] * 60) + parseInt(duration[1]); // get duration in seconds for max value for range
         return(
             <div className="video-player" onClick={this.changeIcon}  >
                 <video className="video-player__video" poster={this.props.video.image} onMouseMove={this.showControls}  ></video>
                 <div className="video-player__controls">
                     <img alt="play button" onClick={this.changeIcon} src={this.state.isPlaying ? play : pause} className="video-player__play-button" /> 
                     <div className="video-player__scrubber-bar"> 
-                        <div className="video-player__scrubber-line"> </div>
+                        <input type="range" className="video-player__scrubber-line" defaultValue="0" min="0" max={totalDuration} />
                         <span className="video-player__time-left"> 0:00/{this.props.video.duration} </span>
                     </div>
                     <div className="video-player__side">
