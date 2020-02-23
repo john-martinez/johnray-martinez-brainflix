@@ -1,6 +1,6 @@
 import React from 'react';
 import './CommentForm.scss';
-import user from '../../assets/Images/Mohan-muruge.jpg';
+import user from '../../assets/images/Mohan-muruge.jpg';
 
 function CommentForm (props){
     const onSubmitHandler = e => {

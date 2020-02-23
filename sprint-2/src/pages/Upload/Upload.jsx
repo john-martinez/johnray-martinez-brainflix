@@ -1,5 +1,5 @@
 import React from 'react';
-import videoPreviewImg from '../../assets/Images/Upload-video-preview.jpg';
+import videoPreviewImg from '../../assets/images/Upload-video-preview.jpg';
 import './Upload.scss';
 
 export default function Upload() {

@@ -1,10 +1,10 @@
 import React from 'react';
 import './VideoPlayer.scss';
-import play from '../../assets/Icons/SVG/Icon-play.svg';
+import play from '../../assets/icons/SVG/Icon-play.svg';
 // import scrubber from '../../assets/Icons/SVG/Icon-scrubber-control.svg';
-import pause from '../../assets/Icons/SVG/Icon-pause.svg';
-import volume from '../../assets/Icons/SVG/Icon-volume.svg';
-import fullscreen from '../../assets/Icons/SVG/Icon-fullscreen.svg';
+import pause from '../../assets/icons/SVG/Icon-pause.svg';
+import volume from '../../assets/icons/SVG/Icon-volume.svg';
+import fullscreen from '../../assets/icons/SVG/Icon-fullscreen.svg';
 function VideoPlayer(props){
     // todos: add setTimeout to add delay to the controls when transitioning to hidden again *** FIXED ***
     // add icon in the middle to see what is the playState of the video *** FIXED ***

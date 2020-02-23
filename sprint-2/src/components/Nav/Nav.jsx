@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from '../../assets/Logo/Logo-brainflix.svg';
-import user from '../../assets/Images/Mohan-muruge.jpg';
-import search from '../../assets/Icons/SVG/Icon-search.svg';
-import upload from '../../assets/Icons/SVG/Icon-upload.svg';
+import logo from '../../assets/logo/Logo-brainflix.svg';
+import user from '../../assets/images/Mohan-muruge.jpg';
+import search from '../../assets/icons/SVG/Icon-search.svg';
+import upload from '../../assets/icons/SVG/Icon-upload.svg';
 import { Link } from 'react-router-dom';
 import './Nav.scss';
 
@@ -18,7 +18,7 @@ function Nav () {
             <img src={search} className="nav__search-icon" alt="magnifying glass"></img>
           </div>
           <div className="nav__actions">
-            <Link to="/upload" className="nav__button">
+            <Link to="/upload" >
               <button className="nav__button"> 
                 <img className="nav__upload-icon" src={upload}  alt="upload icon" /> 
                 <span className="nav__uload-text">UPLOAD</span> 

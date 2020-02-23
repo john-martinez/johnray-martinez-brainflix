@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import CommentSection from '../../components/CommentSection/CommentSection';
 import NextVideoList from '../../components/NextVideoList/NextVideoList';
-import views from '../../assets/Icons/SVG/Icon-views.svg';
-import likes from '../../assets/Icons/SVG/Icon-likes.svg';
+import views from '../../assets/icons/SVG/Icon-views.svg';
+import likes from '../../assets/icons/SVG/Icon-likes.svg';
 import axios from 'axios';
 import './Video.scss';
 
@@ -17,6 +17,7 @@ class Video extends Component {
     
     // initialize state after rendering
     componentDidMount() {
+        console.log("mounted");
         let { videoId } = this.props.match.params;
         this.stillMounted = true;
         let nextVideosListContainer = [];
@@ -36,7 +37,9 @@ class Video extends Component {
             this.changeMainVideo(); // changes mainVideoState when 
         }
     }
-    componentWillUnmount(){ this.stillMounted = false }
+    componentWillUnmount(){ 
+        console.log("UNMOUNTED");
+        this.stillMounted = false }
 
     getRequest = id => {
         this.mainVid && this.mainVid.scrollIntoView();

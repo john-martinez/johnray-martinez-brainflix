@@ -1,5 +1,5 @@
-import img from "../Images/video-list-0.jpg";
-import uuid from 'uuid/v1';
+import img from "../images/video-list-0.jpg";
+import uuid from './node_modules/uuid/v1';
 
 const mainVideo = {
     id: 123456,

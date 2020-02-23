@@ -1,5 +1,5 @@
-@import '../../assets/Partials/variables';
-@import '../../assets/Partials/mixins';
+@import '../../assets/partials/variables';
+@import '../../assets/partials/mixins';
 
 .upload {
     padding: 0 5%;
@@ -121,7 +121,7 @@
             }
     }
         &__flex-container { flex-direction: row }
-        &__input { padding: 5px; font-size: 1rem }
+        &__input { padding: 15px; font-size: 1rem }
     }
 }
 
