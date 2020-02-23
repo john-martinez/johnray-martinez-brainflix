@@ -6,7 +6,7 @@ function CommentList (props) {
         <article className="comment-list"> 
             { props.comments
             .sort((a,b)=>b.timestamp-a.timestamp)
-            .map((item)=> <Comment comment={item} key={item.id} />) }
+            .map((item)=> <Comment comment={item} key={item.id} deleteComment={props.deleteComment}/>) }
         </article>
     );
 }

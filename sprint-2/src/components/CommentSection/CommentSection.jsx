@@ -8,7 +8,7 @@ function CommentSection(props) {
     return (
         <section className="comment-section" >
             <CommentForm commentsLength={props.comments.length} getFormData={props.getFormData} />
-            <CommentList comments={props.comments}/>
+            <CommentList comments={props.comments} deleteComment={props.deleteComment} />
         </section>
     )
 }

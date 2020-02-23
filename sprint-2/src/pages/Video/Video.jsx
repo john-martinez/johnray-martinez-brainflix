@@ -17,7 +17,6 @@ class Video extends Component {
     
     // initialize state after rendering
     componentDidMount() {
-        console.log("mounted");
         let { videoId } = this.props.match.params;
         this.stillMounted = true;
         let nextVideosListContainer = [];
@@ -28,7 +27,7 @@ class Video extends Component {
         .catch(err=>this.props.history.push('/404/')); //goes to not found;
     }
 
-    componentDidUpdate(prevProps, prevState){; 
+    componentDidUpdate(prevProps, prevState){
         if (this.state.mainVideo.id) {
             if (this.props.match.path === '/' && 
                 this.state.mainVideo.id !== this.state.nextVideosList[0].id) {
@@ -65,6 +64,12 @@ class Video extends Component {
         .catch(err=>console.log(err));
     }
     
+    deleteComment = id => {
+        axios.delete(`${LINK}${PATH}/${this.state.mainVideo.id}/comments/${id}${API_KEY}`)
+        .then(res=>this.getRequest(this.state.mainVideo.id))
+        .catch(err => console.log(err))
+    }
+
     render() {
         if (this.state.mainVideo.id){ // check if state is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
@@ -95,7 +100,7 @@ class Video extends Component {
                             </div>
                             <hr />
                             <p className="video__description"> {this.state.mainVideo.description} </p>
-                            <CommentSection comments={this.state.mainVideo.comments} getFormData={this.getFormData}/>
+                            <CommentSection comments={this.state.mainVideo.comments} getFormData={this.getFormData} deleteComment={this.deleteComment} />
                         </div>
                         <NextVideoList match={this.props.match} nextVideoList={this.state.nextVideosList} mainVideoId={this.state.mainVideo.id} />
                     </div>
