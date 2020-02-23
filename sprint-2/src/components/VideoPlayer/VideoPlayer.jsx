@@ -27,16 +27,6 @@ class VideoPlayer extends Component {
             || e.target === middleIcon 
             || e.target.classList[0] === 'video-player__video' 
             || (e.code === 'Space' && document.activeElement.localName !== "input" && document.activeElement.localName !== "textarea")){
-            // if (this.state.playState === "paused") {
-            //     this.state.playState = "play";
-            //     playButton.src = pause;
-            //     middleIcon.src = pause;
-            // } else {
-            //     this.state.playState = "paused";
-            //     playButton.src = play;
-            //     middleIcon.src = play;
-            // }
-            
             this.setState({isPlaying: !this.state.isPlaying})
             clearTimeout(this.timeoutId2);
             middleIcon.classList.add('visible');
@@ -59,13 +49,15 @@ class VideoPlayer extends Component {
 
     fullScreenVideo = e => document.querySelector('.video-player__video').requestFullscreen(); // Need more research for this, doesnt show custom controls
 
-    // callback that changes the playState to pause or play when pressing spacebar  (for now just changes icon)
-    render(){
+    componentDidMount(){
+        // callback that changes the playState to pause or play when pressing spacebar  (for now just changes icon)
         document.addEventListener("keypress", e=>{
             if (e.keyCode === 32 && e.target === document.body)
                 e.preventDefault(); // to prevent spacebar from scrolling the page
                 this.changeIcon(e);
         }) 
+    }
+    render(){
         return(
             <div className="video-player" onClick={this.changeIcon}  >
                 <video className="video-player__video" poster={this.props.video.image} onMouseMove={this.showControls}  ></video>
@@ -80,7 +72,7 @@ class VideoPlayer extends Component {
                         <img alt="volume" src={volume} className="video-player__volume" /> 
                     </div>
                 </div>
-                <img className="video-player__middle-icon" src={play} onClick={this.changeIcon} alt="play or pause button"></img>
+                <img className="video-player__middle-icon" src={this.state.isPlaying ? play : pause} onClick={this.changeIcon} alt="play or pause button"></img>
             </div>
         );
     }
