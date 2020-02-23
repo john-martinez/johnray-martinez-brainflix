@@ -18,11 +18,11 @@ function Nav () {
             <img src={search} className="nav__search-icon" alt="magnifying glass"></img>
           </div>
           <div className="nav__actions">
-            <Link to="/upload" >
-              <button className="nav__button"> 
+            <Link to="/upload" className="nav__button">
+              <div>
                 <img className="nav__upload-icon" src={upload}  alt="upload icon" /> 
-                <span className="nav__uload-text">UPLOAD</span> 
-              </button>
+                <span className="nav__upload-text">UPLOAD</span> 
+              </div>
             </Link>
             <img src={user} className="nav__user" alt="Mohan Murugi side view"></img>
           </div>

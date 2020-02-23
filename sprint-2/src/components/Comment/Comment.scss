@@ -28,5 +28,65 @@
             cursor: pointer; 
         }
     } 
+    &__delete { 
+        display: flex;
+        align-items: center;
+
+        &-button { 
+            flex-basis: 10%;
+            font-size: 1.5rem;
+            height: 100%;
+            padding: 10px 10px 10px 0;
+            display: inline-block;
+            margin-right: 5px;
+            cursor: pointer;
+
+            &:hover { filter: invert(.5) }
+        }
+        &-input { 
+            @include input-style {  
+                border: none;
+                width: 0;
+                padding: 0;
+                background-color: unset;
+                border: none;
+                font-size: 1rem;
+                color: $black;
+                text-align: center; 
+                position: relative; 
+                z-index: 20;
+                font-family: "AvenirBold";
+               
+
+                &--visible { 
+                    width: 100%; 
+                    padding: 10px; 
+                    margin-right: 10px;
+                    border: 2px solid $silver;  
+                 }
+                 &--overlay {
+                    @extend .comment__delete-input;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    opacity: .3;
+                    padding: 0%;
+                }
+                
+                &-container { position: relative }
+            }  
+            &::placeholder { 
+                font-size: .8rem;
+                font-style: italic;
+             }      
+        }
+    }
+    @include tablet { 
+        &__delete-input { max-width: 300px } 
+        &__delete-button { max-width: 40px }
+    }
     @include desktop { padding: 20px 10px 10px 0 }
 }
+
+.color-fill { @include color-fill-animation }

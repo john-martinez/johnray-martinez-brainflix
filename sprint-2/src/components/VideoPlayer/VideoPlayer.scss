@@ -6,7 +6,7 @@
     &__video {
         width: 100%;
         height: auto;
-        max-height: 70vh;
+        max-height: 80vh;
     }
     &__controls {
         position: absolute;
@@ -26,7 +26,6 @@
             margin: 0 5px;
             background-color: rgba(0,0,0,0.5);
         }
-
     }
 
     &__middle-icon { 
@@ -41,7 +40,7 @@
         opacity: 0;
         cursor: pointer;
 
-        &:hover { transform: scale(1.3) }
+        &:hover { background-color: rgba(0,0,0,0.7)}
     }
     &__play-button { 
         width: 40px;
