@@ -110,6 +110,7 @@ class Video extends Component {
             return (
                 <div className="pacman-loader">
                     <PacmanLoader size={40} color={"#323232"} />
+                    <h1 className="pacman-loader-text">LOADING</h1>
                 </div>
             )
         }
