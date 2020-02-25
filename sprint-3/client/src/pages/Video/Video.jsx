@@ -15,7 +15,6 @@ const PATH = '/videos';
 class Video extends Component {
     state = { mainVideo: {}, nextVideosList: {} }
     stillMounted = false; // flag to check later if component is still mounted. If false, promise will not execute setState which will prevent memory leak bugz
-    
     // initialize state after rendering
     componentDidMount() {
         let { videoId } = this.props.match.params;
@@ -49,8 +48,7 @@ class Video extends Component {
         if (this.props.match.params.videoId && 
             this.props.match.params.videoId !== this.state.mainVideo.id){ // DO NOT RENDER IF THE MAINVIDEO ID is equal to :VIDEOID in the url to prevent eternal loop of state change
             this.getRequest(this.props.match.params.videoId);
-            let mainVid = document.querySelector('.video-player__video'); 
-            mainVid && mainVid.scrollIntoView();
+            this.refs.mainVideo.scrollIntoView();
         } 
     }
     getFormData = data => {
@@ -76,8 +74,8 @@ class Video extends Component {
             let day = new Date(this.state.mainVideo.timestamp).getDate();
             
             return (
-                <section className="video">
-                    <VideoPlayer video={this.state.mainVideo} mainVideoUrl={this.state.mainVideoUrl}/>
+                <section className="video" ref="mainVideo">
+                    <VideoPlayer video={this.state.mainVideo} mainVideoUrl={this.state.mainVideoUrl} />
                     <div className="video__main-container">
                         <div className="video__details">
                             <h2 className="video__title">{this.state.mainVideo.title}</h2>
