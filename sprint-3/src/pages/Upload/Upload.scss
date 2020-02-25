@@ -1,0 +1,134 @@
+@import '../../assets/partials/variables';
+@import '../../assets/partials/mixins';
+
+.upload {
+    padding: 0 5%;
+    width: 100%;
+    border-top: 1px solid $silver;
+    color: $black;
+
+    h4 { margin: 0 }
+
+    &__item { 
+        margin: 20px 0 0 0;
+        &--flex {
+            @extend .upload__item;  
+            display: flex;
+            flex-direction: column;
+        } 
+    }
+    &__header { 
+        font-family: "AvenirBold";
+        font-size: 2rem; 
+        margin: 0;
+        padding: 40px 0;
+    }
+
+    &__flex-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__right {
+        flex-grow: 1;
+    }
+
+    &__item-header {
+        color: $dark-silver;
+        font-size: 1rem;
+        margin: 0 0 5px 0; 
+        text-transform: uppercase;
+    }
+
+    &__video {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    &__input { 
+        border: none;
+        outline: none;
+        border: 2px solid $silver;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 15px;
+        background-color: $light-silver;
+
+        &:focus { border-color: $lightest-blue }
+        &::placeholder { color: $black }
+    }
+
+    &__button { 
+        width: 100%;
+        padding: 20px 0;
+        font-family: "AvenirBold";
+        margin: 5px 0;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: $lightest-blue;
+        color: $white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        &:hover {  background-color: darken($lightest-blue, 15%) }
+        &--inverted {
+            @extend .upload__button;
+            color: $lightest-blue;
+            background-color: $white;
+            &:hover { 
+                background-color: darken($white, 15%);
+            }
+        }
+    }
+
+    @include tablet {
+        padding: 2%;
+        &__header { font-size: 3rem }
+        &__button { 
+            width: 200px;
+            &:last-of-type { order: -1 }
+        }
+        &__item { 
+            &:--first { width: 50% }
+            &--flex { 
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+         }
+
+        &__main {
+            border-top: 2px solid $silver;
+            border-bottom: 2px solid $silver;
+            padding: 50px 0;
+        }
+        
+    }
+    @include desktop {
+        padding: 0 10%;
+        &__left { flex-basis: 40%; flex-shrink: 0 }
+        &__right { 
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        &__item { 
+            &--first { width: 40% } 
+            &--grow { 
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column; 
+            }
+    }
+        &__flex-container { flex-direction: row }
+        &__input { padding: 15px; font-size: 1rem }
+    }
+}
+
+.textarea { 
+    height: 200px;
+    resize: none;
+    flex-grow: 1;
+
+    @include desktop { & { height: auto } }
+}

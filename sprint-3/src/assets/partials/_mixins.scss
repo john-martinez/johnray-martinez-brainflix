@@ -1,0 +1,60 @@
+@import './variables';
+@import './animations';
+
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint){
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint){
+        @content;
+    }
+}
+
+@mixin color-fill-animation{
+    animation-name: coloring;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+}
+@mixin input-style {
+    padding: 15px; 
+    height: 100%;
+    width: 100%; 
+    border-radius: 5px;
+    border: none;
+    border: 2px solid $silver;    
+    font-size: 1.2rem;
+    background-color: $light-silver;
+    outline: none;
+    @content;
+
+    &:focus {
+        border: 2px solid $lightest-blue;
+    }
+    
+}
+
+@mixin tablet-view-comment {
+    &__field { 
+        flex-direction: row;
+        &--flex { height: 50px }
+    }
+    &__picture { margin-top: 24px; height: 50px; width: 50px }
+    &__input { overflow-y: hidden }
+    &__button { margin: 0 25px 0 15px; max-width: 150px; padding: 0}
+    @content;
+}
+
+@mixin desktop-view-comment {
+    padding-right: 10px;
+    &__field { 
+        flex-direction: column;
+        &--flex { height: auto }
+    }
+    &__picture { margin-top: 27px; height: 55px; width: 55px }
+    &__input { overflow-y: visible}
+    &__button { margin: 15px 12px 0 0; max-width: 100%; padding: 20px 0 }
+    @content;
+}

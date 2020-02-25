@@ -1,0 +1,12 @@
+@keyframes coloring {
+    from {width: 0; background-color: red }
+    to {width: 100%; background-color: red}
+}
+
+@keyframes shake {
+    0% { transform: translateX(-5px) }
+    25% { transform: translateX(0px) }
+    50% { transform: translateX(5px) }
+    75% { transform: translateX(0px) }
+    100% { transform: translateX(-5px) }
+}

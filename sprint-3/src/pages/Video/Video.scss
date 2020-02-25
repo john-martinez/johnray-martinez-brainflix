@@ -1,0 +1,68 @@
+@import '../../assets/Partials/mixins';
+
+.video {
+    &__main-container { 
+        display: flex; 
+        flex-direction: column; 
+    }
+    &__details { 
+        padding: 5%;
+
+        &--flex { 
+            display: flex; 
+            align-items: baseline;
+        }
+    }
+    &__timestamp { margin-left: 10px; font-size: 1.1rem }
+    &__title { font-family: "AvenirBold"; font-size: 2rem; margin-bottom: 5px}
+    &__stats-container {
+        display: flex; 
+        height: 30px;
+    }
+    &__stats { margin-right: 10px }
+    &__stat-value { margin-left: 4px }
+    &__stat-icon { transform: translateY(2px);}
+    &__blurb { 
+        display: flex; 
+        align-items: baseline;
+        justify-content: space-between;
+        flex-direction: column;
+        flex-wrap: wrap;
+        > * {  margin-top: 10px }
+    }
+
+    &__channel { font-size: 1.4rem }
+
+    &__details { 
+        display: flex;
+        flex-direction: column;
+    }
+    @include tablet {
+        &__details { padding: 2% }
+        &__blurb { flex-direction: row }
+        // &__stats { padding-left: 10px }
+        &__description { width: 70% }   
+    }
+
+    @include desktop {
+        &__main-container { 
+            flex-direction: row;
+            padding: 0 10%;
+        }
+        &__details { padding:0 }
+    }
+}
+
+.pacman-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 120%);
+
+    &-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, 150%);
+    }
+ }

@@ -1,0 +1,55 @@
+@import '../../assets/partials/mixins';
+@import '../../assets/partials/variables';
+
+.not-found {
+    background-image: url('../../assets/images/notFound.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-size: 0.5rem;
+
+    &__blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0,0,0,0.6);    
+    }
+    &__text {
+        width: 70%;
+        position: absolute;
+        padding: 50px;
+        border-radius: 10px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255,255,255,0.9);
+        text-align: center;
+    }
+
+    &__button {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        padding: 15px 0;
+        background-color: $lighter-blue;
+        color: white;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1.2rem;
+
+        &:hover { background-color: lighten($lighter-blue, 10%)}
+    }
+
+    @include tablet { &__button { width: 50% } }
+    @include desktop { 
+        font-size: 1rem;
+        &__button { width: 30% }  
+    }
+}

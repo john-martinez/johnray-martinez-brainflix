@@ -1,0 +1,17 @@
+@import '../../assets/Partials/mixins';
+@import '../../assets/Partials/variables';
+
+
+.next-video-list {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    &__header { color: $dark-silver }
+
+    @include tablet { padding: 2% }
+    @include desktop { 
+        padding: 0 0 0 25px;
+        border-left: 2px solid $silver;
+        min-width: 320px;
+    }
+}
