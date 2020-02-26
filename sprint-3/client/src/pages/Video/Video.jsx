@@ -8,8 +8,8 @@ import likes from '../../assets/icons/SVG/Icon-likes.svg';
 import axios from 'axios';
 import './Video.scss';
 
-const API_KEY = '?api_key=14730dbf-fa5a-4549-af89-30a311f43d00';
-const LINK = 'https://project-2-api.herokuapp.com';
+// const API_KEY = '?api_key=14730dbf-fa5a-4549-af89-30a311f43d00';
+const LINK = 'http://localhost:8080';
 const PATH = '/videos';
 
 class Video extends Component {
@@ -20,9 +20,9 @@ class Video extends Component {
         let { videoId } = this.props.match.params;
         this.stillMounted = true;
         let nextVideosListContainer = [];
-        axios.get(`${LINK}${PATH}${API_KEY}`) // fetch the nextVideoList
+        axios.get(`${LINK}${PATH}`) // fetch the nextVideoList
         .then(nextVideosList=>nextVideosListContainer=nextVideosList.data) // place the nextVideoList in a container
-        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${!videoId ? nextVideosListContainer[0].id : videoId}${API_KEY}`)) 
+        .then(nextVideosListContainer=>axios.get(`${LINK}${PATH}/${!videoId ? nextVideosListContainer[0].id : videoId}`)) 
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data, nextVideosList: nextVideosListContainer}) : '')
         .catch(err=>this.props.history.push('/404/')); //goes to not found;
     }
@@ -40,7 +40,7 @@ class Video extends Component {
 
     getRequest = id => {
         this.mainVid && this.mainVid.scrollIntoView();
-        axios.get(`${LINK}${PATH}/${id}${API_KEY}`)
+        axios.get(`${LINK}${PATH}/${id}`)
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
         .catch(err=>console.log(err))
     }
@@ -52,17 +52,17 @@ class Video extends Component {
         } 
     }
     getFormData = data => {
-        axios.post(`${LINK}${PATH}/${this.state.mainVideo.id}/comments${API_KEY}`, {
+        axios.post(`${LINK}${PATH}/${this.state.mainVideo.id}/comments`, {
             name: 'BrainStation Guy', 
             comment: data
         })
-        .then(res=>axios.get(`${LINK}${PATH}/${this.state.mainVideo.id}${API_KEY}`))
+        .then(res=>axios.get(`${LINK}${PATH}/${this.state.mainVideo.id}`))
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
         .catch(err=>console.log(err));
     }
     
     deleteComment = id => {
-        axios.delete(`${LINK}${PATH}/${this.state.mainVideo.id}/comments/${id}${API_KEY}`)
+        axios.delete(`${LINK}${PATH}/${this.state.mainVideo.id}/comments/${id}`)
         .then(res=>this.getRequest(this.state.mainVideo.id))
         .catch(err => console.log(err))
     }
