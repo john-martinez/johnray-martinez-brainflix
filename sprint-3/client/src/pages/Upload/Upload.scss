@@ -132,3 +132,14 @@
 
     @include desktop { & { height: auto } }
 }
+
+.shake {
+    animation-name: shake;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+ }
+
+ .wrong-input {
+     border-color: red;
+ }
