@@ -15,6 +15,7 @@ const PATH = '/videos';
 class Video extends Component {
     state = { mainVideo: {}, nextVideosList: {} }
     stillMounted = false; // flag to check later if component is still mounted. If false, promise will not execute setState which will prevent memory leak bugz
+    timer = 0;
     // initialize state after rendering
     componentDidMount() {
         let { videoId } = this.props.match.params;
@@ -32,8 +33,8 @@ class Video extends Component {
             if (this.props.match.path === '/' && 
                 this.state.mainVideo.id !== this.state.nextVideosList[0].id) {
                 this.getRequest(this.state.nextVideosList[0].id);
-        } else 
-            this.changeMainVideo(); // changes mainVideoState when 
+            } else this.changeMainVideo(); // changes mainVideoState when 
+
         }
     }
     componentWillUnmount(){ this.stillMounted = false }
@@ -42,7 +43,7 @@ class Video extends Component {
         this.mainVid && this.mainVid.scrollIntoView();
         axios.get(`${LINK}${PATH}/${id}`)
         .then(res=>this.stillMounted ? this.setState({mainVideo: res.data}) : '')
-        .catch(err=>console.log(err))
+        .catch(err=>this.props.history.push('/404/'))
     }
     changeMainVideo(){
         if (this.props.match.params.videoId && 
