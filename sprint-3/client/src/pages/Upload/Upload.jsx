@@ -9,13 +9,14 @@ const PATH = '/videos';
 export default function Upload() {
     const onSubmitHandler = e => {
         e.preventDefault();
-        let { title } = e.target;
+        let { title, description } = e.target;
         title.classList.remove('wrong-input');
         if (title.value.trim()) {
             axios.post(`${LINK}${PATH}`, {
                 title: title.value, 
                 channel: "BrainStation Guy",
-                image: "https://i.imgur.com/yFS8EBr.jpg"
+                image: "https://i.imgur.com/yFS8EBr.jpg",
+                description: description.value
             })
             .then(res=>console.log(res.data))
             .catch(err=>console.log(err))

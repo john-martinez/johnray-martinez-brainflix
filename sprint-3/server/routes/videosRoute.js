@@ -1,13 +1,24 @@
 const express = require('express');
 const uuid = require('uuid/v4');
-const nextVideos = require('../data/nextVideos.json');
-const mainVideos = require('../data/mainVideos.json');
 const fs = require('fs');
 const router = express.Router();
-const VIDEO_DETAILS = "mainVideos.json";
-const NEXT_VIDEOS = "nextVideos.json";
+const VIDEO_DETAILS = "videos.json";
 
-const getAllVideos = (_,res) => fetchData(NEXT_VIDEOS).then(data=>res.send(data)).catch(console.log);
+const getAllVideos = (_,res) => {
+    fetchData(VIDEO_DETAILS)
+    .then(data=>{
+        const nextVideoList = data.map(item=>{
+            return {
+                id: item.id,
+                title: item.title, 
+                channel: item.channel,
+                image: item.image
+            }
+        })
+        return res.send(nextVideoList);
+    })
+    .catch(console.log);
+}
 const getOneVideo = (req,res) => fetchData(VIDEO_DETAILS).then(data=>res.send(data.find(item=>item.id === req.params.videoId))).catch(err=>console.log)
 const postComment = (req,res) => {
     fetchData(VIDEO_DETAILS)
@@ -22,7 +33,7 @@ const postComment = (req,res) => {
             timestamp: Date.now()
         }
         video.comments.push(newComment); // NEED TO SAVE TO FILE AFTER
-        fs.writeFile('./data/mainVideos.json', JSON.stringify(data), err => {
+        fs.writeFile('./data/videos.json', JSON.stringify(data), err => {
             if (err) throw err;
             console.log('file saved');
         })
@@ -38,7 +49,7 @@ const deleteComment = (req,res) => {
         const video = data.find(item=>item.id === videoId);
         const newComments = video.comments.filter(item=>item.id !== commentId);
         video.comments = newComments;
-        fs.writeFile('./data/mainVideos.json', JSON.stringify(data), err => {
+        fs.writeFile('./data/videos.json', JSON.stringify(data), err => {
             if (err) throw err;
             console.log('file saved');
         })
@@ -54,18 +65,45 @@ const incrementLikes = (req,res)=>{
 }
 
 const uploadVideo = (req,res)=>{
-    fetchData(NEXT_VIDEOS)
-    .then(data=>{
-        res.send(data);
-        const { title, channel, image } = req.body;
+    fetchData(VIDEO_DETAILS)
+    .then(data=>{   
+        const { title, channel, image, description } = req.body;
         const newVideo = {
             id: uuid(),
-            title, 
+            title,      
             channel,
-            image
-        }
+            image,
+            description,
+            views: "0",
+            likes: "0",
+            duration: "2:23",
+            video: "https://project-2-api.herokuapp.com/stream",
+            timestamp: 1545162149000,
+            comments: [
+            {
+                name: "Micheal Lyons",
+                comment: "They BLEW the ROOF off at their last show, once everyone started figuring out they were going. This is still simply the greatest opening of acconcert I have EVER witnessed.",
+                id: "1ab6d9f6-da38-456e-9b09-ab0acd9ce818",
+                likes: 0,
+                timestamp: 1545162149000
+            },
+            {
+                name: "Gary Wong",
+                comment: "Every time I see him shred I feel so motivated to get off my couch and hop on my board. He’s so talented! I wish I can ride like him one day so I can really enjoy myself!",
+                id: "cc6f173d-9e9d-4501-918d-bc11f15a8e14",
+                likes: 0,
+                timestamp: 1544595784046
+            },
+            {
+                name: "Theodore Duncan",
+                comment: "How can someone be so good!!! You can tell he lives for this and loves to do it every day. Everytime I see him I feel instantly happy! He’s definitely my favorite ever!",
+                id: "993f950f-df99-48e7-bd1e-d95003cc98f1",
+                likes: 0,
+                timestamp: 1542262984046
+            }
+        ]}
         data.push(newVideo);
-        fs.writeFile('./data/nextVideos.json', JSON.stringify(data), err => {
+        fs.writeFile('./data/videos.json', JSON.stringify(data), err => {
             if (err) throw err;
             console.log('file saved');
         })
@@ -84,12 +122,9 @@ const fetchData = filename => {
     })
 }
 
-const getVideos = (req,res) => fetchData(NEXT_VIDEOS).then(data=>res.send(data)).catch(err=>res.send(err));
-
 router
     .get ('/', getAllVideos)
     .post('/', uploadVideo)
-    .get ('/hotdog', getVideos) // TEST ROUTE
     .get ('/:videoId', getOneVideo)
     .put ('/:videoId', incrementLikes)
     .post('/:videoId/comments', postComment)
