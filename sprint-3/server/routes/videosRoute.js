@@ -60,8 +60,16 @@ const deleteComment = (req,res) => {
 }
 
 const incrementLikes = (req,res)=>{
-    const mainVideoLikes = retrieveMainVideo(req.params.videoId).likes = req.body.likes;
-    res.send({likes: mainVideoLikes})
+    fetchData(VIDEO_DETAILS)
+    .then(data=>{
+        const video = data.find(item=>item.id === req.params.videoId);
+        video.likes = req.body.likes;
+        fs.writeFile('./data/videos.json', JSON.stringify(data), err => {
+            if (err) throw err;
+            console.log('file saved');
+        })
+        res.send(video);
+    })
 }
 
 const uploadVideo = (req,res)=>{
@@ -78,7 +86,7 @@ const uploadVideo = (req,res)=>{
             likes: "0",
             duration: "2:23",
             video: "https://project-2-api.herokuapp.com/stream",
-            timestamp: 1545162149000,
+            timestamp: Date.now(),
             comments: [
             {
                 name: "Micheal Lyons",
@@ -109,8 +117,7 @@ const uploadVideo = (req,res)=>{
         })
         res.send(data);
     })
-    .catch(console.log)
-    
+    .catch(console.log) 
 }
 
 const fetchData = filename => {

@@ -68,6 +68,23 @@ class Video extends Component {
         .catch(err => console.log(err))
     }
 
+    incrementLike = e => {
+        let likes = this.refs.likesCounter.innerText;
+        likes = likes.split(',');
+        likes.reverse();
+        for (let i = 0; i < likes.length; i++){
+            if(parseInt(likes[i]) === 999) {
+                likes[i] = "0";
+            } else {
+                likes[i] = parseInt(likes[i])+1 + '';
+                break;
+            }
+        }
+        console.log(likes.reverse().join(","));
+        axios.put(`${LINK}${PATH}/${this.state.mainVideo.id}`, { likes: likes.join(",") })
+        .then(res=>this.getRequest(this.state.mainVideo.id))
+        .catch(err => console.log(err))
+    }
     render() {
         if (this.state.mainVideo.id){ // check if state is not empty
             let year = new Date(this.state.mainVideo.timestamp).getFullYear();
@@ -88,11 +105,11 @@ class Video extends Component {
                                 <div className="video__stats-container">
                                     <span className="video__stats">
                                         <img className="video__stat-icon" src={views} alt="views icon"/>
-                                        <span className="video__stat-value"> {this.state.mainVideo.views} </span>
+                                        <span className="video__stat-value" > {this.state.mainVideo.views} </span>
                                     </span>
-                                    <span className="video__stats">
+                                    <span className="video__stats" onClick={this.incrementLike}>
                                         <img className="video__stat-icon" src={likes} alt="likes icon"/>
-                                        <span className="video__stat-value"> {this.state.mainVideo.likes} </span>
+                                        <span className="video__stat-value" ref="likesCounter"> {this.state.mainVideo.likes} </span>
                                     </span>
                                 </div>
                             </div>
