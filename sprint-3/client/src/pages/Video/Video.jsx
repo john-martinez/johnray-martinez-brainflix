@@ -80,7 +80,7 @@ class Video extends Component {
                 break;
             }
         }
-        console.log(likes.reverse().join(","));
+        likes.reverse();
         axios.put(`${LINK}${PATH}/${this.state.mainVideo.id}`, { likes: likes.join(",") })
         .then(res=>this.getRequest(this.state.mainVideo.id))
         .catch(err => console.log(err))
