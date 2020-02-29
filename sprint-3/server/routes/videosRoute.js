@@ -8,12 +8,8 @@ const getAllVideos = (_,res) => {
     fetchData(VIDEO_DETAILS)
     .then(data=>{
         const nextVideoList = data.map(item=>{
-            return {
-                id: item.id,
-                title: item.title, 
-                channel: item.channel,
-                image: item.image
-            }
+            const { id, title, channel, image } = item;
+            return { id, title, channel, image }
         })
         return res.send(nextVideoList);
     })
