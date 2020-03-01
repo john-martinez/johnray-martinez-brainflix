@@ -6,7 +6,7 @@ import './Upload.scss';
 const LINK = 'http://localhost:8080';
 const PATH = '/videos';
 
-export default function Upload() {
+export default function Upload(props) {
     const onSubmitHandler = e => {
         e.preventDefault();
         let { title, description } = e.target;
@@ -18,7 +18,7 @@ export default function Upload() {
                 image: "https://i.imgur.com/yFS8EBr.jpg",
                 description: description.value
             })
-            .then(res=>console.log(res.data))
+            .then(res=>setTimeout(()=>props.history.push('/'), 2000))
             .catch(err=>console.log(err))
         } else {
             title.classList.add('shake');
