@@ -51,8 +51,7 @@ const deleteComment = (req,res) => {
         })
         res.send('deleted');
     })
-    .catch(console.log)
-    
+    .catch(console.log)  
 }
 
 const incrementLikes = (req,res)=>{
@@ -103,9 +102,24 @@ const fetchData = filename => {
     })
 }
 
+const resetVideoData = (req,res) => {
+    fetchData('defaultVideos.json')
+    .then(data=>{
+        fs.writeFile('./data/videos.json', JSON.stringify(data), err => {
+            if (err) throw err;
+            console.log('file saved');
+        })
+        res.send({message: 'data has been reset'})
+    })
+    .catch(console.log)
+}
+
 router.route('/')
     .get (getAllVideos)
     .post(uploadVideo)
+
+router.route('/reset')
+    .get (resetVideoData)
 
 router.route('/:videoId')
     .get (getOneVideo)
