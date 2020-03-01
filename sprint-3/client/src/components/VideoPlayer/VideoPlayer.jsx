@@ -6,7 +6,7 @@ import volume from '../../assets/icons/SVG/Icon-volume.svg';
 import fullscreen from '../../assets/icons/SVG/Icon-fullscreen.svg';
 class VideoPlayer extends Component {  
     // EVENT LISTENER TO CHANGE ICON WHEN PRESSING SPACEBAR OR WHEN CLICKING THE VIDEO OR THE PLAY/PAUSE BUTTON
-    state = { isPlaying: false, currentTime: 0} 
+    state = { isPlaying: false, currentTime: 0, isMuted: false } 
     timeoutId = 0;
     timeoutId2 = 0;
     intervalId = 0;
@@ -33,7 +33,6 @@ class VideoPlayer extends Component {
         }
     }
 
-
     // callback that shows video controls briefly upon mousemove on video-player
     showControls = e => {
         clearTimeout(this.timeoutId);
@@ -49,20 +48,16 @@ class VideoPlayer extends Component {
     onChangeHandler = e => { this.setState({currentTime: e.target.value }) }
 
     ticker = () => {     
-        console.log('ticking');
         let seconds = this.state.currentTime;
         let minutes = Math.floor(this.state.currentTime/60);
         let subtractor = 0;
         subtractor = ((Math.floor(seconds/60)) * 60);
         seconds = seconds-subtractor;
-        // console.log(seconds);
         if (minutes <= 9) 
             minutes = `0${minutes}`;
         if (seconds <= 9)
             seconds = `0${seconds}`;
 
-        console.log(this.state.currentTime);
-        console.log(minutes + ':' + seconds)
         return minutes + ':' + seconds;
     }
     componentDidMount(){
@@ -77,6 +72,7 @@ class VideoPlayer extends Component {
     }
 
     componentDidUpdate(){ 
+        this.refs.mainView.muted = this.state.isMuted ? true : false;
         if (this.state.isPlaying) {
             clearInterval(this.intervalId);
             this.refs.mainView.play() 
@@ -85,14 +81,13 @@ class VideoPlayer extends Component {
             this.refs.mainView.pause();
             clearInterval(this.intervalId);
         }   
-        console.log(this.refs.mainView.currentTime);
         if (this.state.currentTime === this.totalDuration ) {
-            // this.refs.mainView.pause().currentTime(0).trigger('loadstart');
             this.setState({ isPlaying: false, currentTime: 0 })
         }
     }
     componentWillUnmount(){ this.stillMounted = false }
 
+    videoPauseHandler = () => this.setState({ isMuted: !this.state.isMuted })
     render(){
         // get duration in seconds for max value for range
         return(
@@ -106,7 +101,7 @@ class VideoPlayer extends Component {
                     </div>
                     <div className="video-player__side">
                         <img alt="fullscreen button" src={fullscreen} onClick={this.fullScreenVideo} className="video-player__fullscreen" /> 
-                        <img alt="volume" src={volume} className="video-player__volume" /> 
+                        <img alt="volume" src={volume} className="video-player__volume" onClick={this.videoPauseHandler}/> 
                     </div>
                 </div>
                 <img className="video-player__middle-icon" src={this.state.isPlaying ? play : pause} onClick={this.changeIcon} alt="play or pause button" ref="middleButton"></img>
